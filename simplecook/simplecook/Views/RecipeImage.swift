@@ -8,16 +8,19 @@
 import SwiftUI
 
 struct RecipeImage: View {
+    
+    var image: Image
+    
     var body: some View {
-        Image("poachedeggs")
+        image
             .clipShape(Circle())
-            .overlay(Circle().stroke(Color.white, lineWidth: 4)) // shadow circle
+            .overlay(Circle().stroke(Color.white, lineWidth: 4))
             .shadow(radius: 7)
     }
 }
 
 struct RecipeImage_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeImage()
+        RecipeImage(image: Image("poachedeggs"))
     }
 }
