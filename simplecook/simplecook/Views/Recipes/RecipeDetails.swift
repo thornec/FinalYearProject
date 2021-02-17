@@ -8,8 +8,15 @@
 import SwiftUI
 
 struct RecipeDetails: View {
-    
+    @EnvironmentObject var modelData: ModelData
     var recipe: Recipe
+    
+    // compute index of input landmark by comparing it to model data
+    var recipeIndex: Int {
+        modelData.recipes.firstIndex(where: {
+            $0.id == recipe.id
+        })!
+    }
     
     var body: some View {
         ScrollView{
@@ -19,11 +26,14 @@ struct RecipeDetails: View {
                 .ignoresSafeArea(edges: .top)
                 
             VStack(alignment: .leading){
-                
-                // recipe title
-                Text(recipe.name)
-                    .font(.title)
-                    .padding(5)
+                HStack{
+                    // recipe title
+                    Text(recipe.name)
+                        .font(.title)
+                        .padding(5)
+                        .foregroundColor(.primary)
+                    SaveButton(isSet: $modelData.recipes[recipeIndex].isSaved)
+                }
                 
                 // border
                 Divider()
@@ -58,7 +68,11 @@ struct RecipeDetails: View {
 }
 
 struct RecipeDetails_Previews: PreviewProvider {
+    
+    static let modelData = ModelData()
+    
     static var previews: some View {
-        RecipeDetails(recipe: recipes[0])
+        RecipeDetails(recipe: modelData.recipes[0])
+            .environmentObject(modelData)
     }
 }

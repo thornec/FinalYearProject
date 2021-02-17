@@ -10,10 +10,13 @@ import SwiftUI
 // app entry point
 @main
 struct simplecookApp: App {
+    @StateObject private var modelData = ModelData()
+    
     // returns scenes
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(modelData)
         }
     }
 }

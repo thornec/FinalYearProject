@@ -32,6 +32,9 @@ struct RecipeRow: View {
 }
 
 struct RecipeRow_Previews: PreviewProvider {
+    static var recipes = ModelData().recipes
+    
+    
     static var previews: some View {
         Group{
             RecipeRow(recipe: recipes[0])

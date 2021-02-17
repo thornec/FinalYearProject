@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct RecipeList: View {
-    @EnviornmentObject var modelData: ModelData
+    
+    @EnvironmentObject var modelData: ModelData     // allows modelData to get its value automatically
     @State private var showFavoritesOnly = false
     
     // state for saved recipes
@@ -16,7 +17,7 @@ struct RecipeList: View {
     
     // filtered version displaying saved recipes only
     var filteredRecipes: [Recipe] {
-        recipes.filter{ recipe in
+        modelData.recipes.filter { recipe in
             (!showSavedOnly || recipe.isSaved)
         }
     }
@@ -41,13 +42,10 @@ struct RecipeList: View {
 }
 
 struct RecipeList_Previews: PreviewProvider {
+    
+    
     static var previews: some View {
-        //ForEach(["iPhone SE (2nd generation)", "iPhone XS Max"], id: \.self) { deviceName in
-          //         RecipeList()
-           //            .previewDevice(PreviewDevice(rawValue: deviceName))
-             //  }
-        RecipeList()
-            .enviornmentObject(ModelData())
+        RecipeList().environmentObject(ModelData())
     
     }
 }
