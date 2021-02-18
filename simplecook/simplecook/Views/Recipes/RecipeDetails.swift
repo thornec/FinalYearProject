@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import iPages
 
 struct RecipeDetails: View {
     @EnvironmentObject var modelData: ModelData
@@ -30,40 +31,38 @@ struct RecipeDetails: View {
                     // recipe title
                     Text(recipe.name)
                         .font(.title)
-                        .padding(5)
+                        .padding(10)
                         .foregroundColor(.primary)
                     SaveButton(isSet: $modelData.recipes[recipeIndex].isSaved)
                 }
+                .padding()
+                
+                
                 
                 // border
                 Divider()
                 
                 // recipe price and cook time
-                HStack {
-                    Text(recipe.cooktime)
+                //HStack {
+                  //  Text(recipe.cooktime)
                         
-                    Spacer()
+                    //Spacer()
                         
-                    Text(recipe.price)
-                }
-                .font(.subheadline)
-                .foregroundColor(.secondary)
+                    //Text(recipe.price)
                     
-                //ingredients
-                Text("ingredients")
-                    .font(.title)
-                Text(recipe.ingredients)
-                    .font(.subheadline)
-                //method
-                Text("method")
-                    .font(.title)
-                Text(recipe.method)
-                    .font(.subheadline)
+                //}
+                    
+
+                RecipeIngredients(recipe: recipe)
+
+                
             }
             .padding()
         }
         .navigationTitle(recipe.name)
         .navigationBarTitleDisplayMode(.inline)
+        
+        
     }
 }
 
@@ -72,7 +71,11 @@ struct RecipeDetails_Previews: PreviewProvider {
     static let modelData = ModelData()
     
     static var previews: some View {
-        RecipeDetails(recipe: modelData.recipes[0])
-            .environmentObject(modelData)
+        Group {
+            RecipeDetails(recipe: modelData.recipes[0])
+                .environmentObject(modelData)
+            RecipeDetails(recipe: modelData.recipes[0])
+                .environmentObject(modelData)
+        }
     }
 }

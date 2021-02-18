@@ -9,8 +9,24 @@ import SwiftUI
 
 // content and layout
 struct ContentView: View {
+    @State private var selection: Tab = .featured
+
+    enum Tab {
+        case featured
+        case list
+    }
+    
     var body: some View {
-        RecipeList()
+        TabView(selection: $selection){
+            CategoryHome()
+                .tabItem {
+                                    Label("Featured", systemImage: "star")
+                                }
+            RecipeList()
+                .tabItem {
+                                    Label("List", systemImage: "list.bullet")
+                                }        }
+        
     }
 }
 

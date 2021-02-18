@@ -13,7 +13,7 @@ struct Recipe: Hashable, Codable, Identifiable {
     var price: String
     var cooktime: String
     var method: String
-    var ingredients: String
+    var ingredients: [String]
     var isSaved: Bool
     
     var imageName: String
@@ -21,4 +21,10 @@ struct Recipe: Hashable, Codable, Identifiable {
         Image(imageName)
     }
 
+    var category: Category
+    enum Category: String, CaseIterable, Codable {
+        case breakfast = "Breakfast"
+        case lunch = "Lunch"
+        case dinner = "Dinner"
+    }
 }

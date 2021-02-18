@@ -11,6 +11,14 @@ import Combine
 // recipes are of observable class to allow changes to be shown through relevant views
 final class ModelData: ObservableObject {
     @Published var recipes: [Recipe] = load("recipesData.json")
+    
+    // categories dictionary
+    var categories: [String: [Recipe]]{
+        Dictionary(
+        grouping: recipes,
+            by: { $0.category.rawValue }
+        )
+    }
 }
 
 // load method fetches JSON data using filename
