@@ -15,55 +15,82 @@ struct RecipeIngredients: View {
     @State var checked = false
     
     var body: some View {
-        iPages {
-            VStack(alignment:(.leading)){
-                // display each recipe ingredient
-                ForEach(recipe.ingredients, id: \.self){ ingredient in
-                    HStack{
-                        Text(ingredient)
-                            .offset(x:30)
-                        
-                        Spacer()
-                        
-                        Button(action: {
-                            if !self.checked {
-                                withAnimation(Animation.easeIn(duration: 0.4)){
-                                    self.trim = 1
-                                    self.checked.toggle()
-                                }
-                            }
-                            else {
-                                withAnimation{
-                                    self.trim = 0
-                                    self.checked.toggle()
-                                }
-                            }
-                        })
-                        {
-                            Checkbox(checked: $checked, trim: $trim)
-                        }
-                    }
-                    .padding()
+        ScrollView{
+            
+            iPages {
+                VStack(alignment:(.leading)){
                     
-                    Divider()
+                    Text("ingredients")
+                        .font(.title)
+                        .offset(x:10)
+                    
+                    // display each recipe ingredient
+                    ForEach(recipe.ingredients, id: \.self){ ingredient in
+                        HStack{
+                            Text(ingredient)
+                                .offset(x:30)
+                                .font(.title)
+                            
+                            Spacer()
+                            
+                            Button(action: {
+                                if !self.checked {
+                                    withAnimation(Animation.easeIn(duration: 0.4)){
+                                        self.trim = 1
+                                        self.checked.toggle()
+                                    }
+                                }
+                                else {
+                                    withAnimation{
+                                        self.trim = 0
+                                        self.checked.toggle()
+                                    }
+                                }
+                            })
+                            {
+                                Checkbox(checked: $checked, trim: $trim)
+                            }
+                        }
+                        .padding()
                         
+                        Divider()
+                            
+                    }
+                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                 }
-                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                
+                
+                VStack(alignment:(.leading)){
+                    Text("method")
+                        //.offset(x:10)
+                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                        .padding()
+                    
+                    // display each recipe ingredient
+                    ForEach(recipe.method, id: \.self){ method in
+                        HStack{
+                            Text(method)
+                                .font(.title)
+                            
+                        }
+                        
+                        Divider()
+
+                    }
+
+                }
+                .padding()
             }
-            VStack{
-                Text(recipe.method)
-            }
+            .dotsBackgroundStyle(.prominent)
+            .padding()
+            .frame(width: 380, height: 800, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            //.overlay(Square.stroke(Color.white, lineWidth: 4))
+            .shadow(radius: 7)
+        
+            
+            
         }
-        .dotsBackgroundStyle(.prominent)
-        .padding()
-        .frame(width: 390, height: 400, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-        //.overlay(Square.stroke(Color.white, lineWidth: 4))
-        .shadow(radius: 7)
-    
-        
-        
     }
-    
 }
 
 struct RecipeIngredients_Previews: PreviewProvider {

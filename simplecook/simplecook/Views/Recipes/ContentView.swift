@@ -17,16 +17,23 @@ struct ContentView: View {
     }
     
     var body: some View {
+        // tab bar
         TabView(selection: $selection){
-            CategoryHome()
-                .tabItem {
-                                    Label("Featured", systemImage: "star")
-                                }
+            // search page
             RecipeList()
-                .tabItem {
-                                    Label("List", systemImage: "list.bullet")
-                                }        }
-        
+                .tabItem
+                {
+                    Label("Search", systemImage: "magnifyingglass.circle")
+                }
+            
+            // shopping list page
+            CategoryHome()
+                .tabItem
+                {
+                    Label("Shopping List", systemImage: "list.bullet")
+                }
+            
+        }
     }
 }
 

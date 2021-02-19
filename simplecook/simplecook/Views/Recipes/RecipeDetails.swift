@@ -12,7 +12,7 @@ struct RecipeDetails: View {
     @EnvironmentObject var modelData: ModelData
     var recipe: Recipe
     
-    // compute index of input landmark by comparing it to model data
+    // compute index of input recipe by comparing it to model data
     var recipeIndex: Int {
         modelData.recipes.firstIndex(where: {
             $0.id == recipe.id
@@ -41,20 +41,13 @@ struct RecipeDetails: View {
                 
                 // border
                 Divider()
-                
-                // recipe price and cook time
-                //HStack {
-                  //  Text(recipe.cooktime)
-                        
-                    //Spacer()
-                        
-                    //Text(recipe.price)
-                    
-                //}
-                    
+  
 
                 RecipeIngredients(recipe: recipe)
 
+                CookingButton()
+                    .offset(x:15)
+                
                 
             }
             .padding()

@@ -18,7 +18,6 @@ struct CategoryHome: View {
                         CategoryRow(categoryName: key, items: modelData.categories[key]!)
                     }
                 }
-                .navigationTitle("Featured")
             }
         }
     }

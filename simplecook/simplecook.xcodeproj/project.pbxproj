@@ -28,6 +28,9 @@
 		1B91494925DD29D400B01F2B /* landmarkData.json in Resources */ = {isa = PBXBuildFile; fileRef = 1B91494825DD29D400B01F2B /* landmarkData.json */; };
 		1B91494C25DD2A0E00B01F2B /* Landmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B91494B25DD2A0E00B01F2B /* Landmark.swift */; };
 		1B91495025DD2E5C00B01F2B /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B91494F25DD2E5C00B01F2B /* Recipe.swift */; };
+		1BA4D0FE25DFFEB800E926F3 /* CookingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA4D0FD25DFFEB800E926F3 /* CookingButton.swift */; };
+		1BA4D10125E013D400E926F3 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA4D10025E013D400E926F3 /* Search.swift */; };
+		1BA4D10825E0182300E926F3 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA4D10725E0182300E926F3 /* SearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +56,9 @@
 		1B91494825DD29D400B01F2B /* landmarkData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = landmarkData.json; sourceTree = "<group>"; };
 		1B91494B25DD2A0E00B01F2B /* Landmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landmark.swift; sourceTree = "<group>"; };
 		1B91494F25DD2E5C00B01F2B /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		1BA4D0FD25DFFEB800E926F3 /* CookingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingButton.swift; sourceTree = "<group>"; };
+		1BA4D10025E013D400E926F3 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		1BA4D10725E0182300E926F3 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +79,9 @@
 				1B73F4AF25DDA7F1008E450C /* SaveButton.swift */,
 				1B7BD10825DBF47E0019FDA9 /* RecipeImage.swift */,
 				1B74047625DEE5B300D37EDA /* Checkbox.swift */,
+				1BA4D0FD25DFFEB800E926F3 /* CookingButton.swift */,
+				1BA4D10025E013D400E926F3 /* Search.swift */,
+				1BA4D10725E0182300E926F3 /* SearchBar.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -249,6 +258,8 @@
 				1B7BD0FB25DBEFD10019FDA9 /* ContentView.swift in Sources */,
 				1B74047025DEC25900D37EDA /* RecipeIngredients.swift in Sources */,
 				1B91495025DD2E5C00B01F2B /* Recipe.swift in Sources */,
+				1BA4D0FE25DFFEB800E926F3 /* CookingButton.swift in Sources */,
+				1BA4D10825E0182300E926F3 /* SearchBar.swift in Sources */,
 				1B7BD10925DBF47E0019FDA9 /* RecipeImage.swift in Sources */,
 				1B74046225DEB49B00D37EDA /* CategoryHome.swift in Sources */,
 				1B73F4B025DDA7F1008E450C /* SaveButton.swift in Sources */,
@@ -259,6 +270,7 @@
 				1B7BD0F925DBEFD10019FDA9 /* simplecookApp.swift in Sources */,
 				1B74046625DEB6CE00D37EDA /* CategoryRow.swift in Sources */,
 				1B508D5B25DD7126004AC0DC /* RecipeList.swift in Sources */,
+				1BA4D10125E013D400E926F3 /* Search.swift in Sources */,
 				1B74047725DEE5B300D37EDA /* Checkbox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

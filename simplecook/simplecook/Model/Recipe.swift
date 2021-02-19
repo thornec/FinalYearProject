@@ -12,7 +12,7 @@ struct Recipe: Hashable, Codable, Identifiable {
     var name: String
     var price: String
     var cooktime: String
-    var method: String
+    var method: [String]
     var ingredients: [String]
     var isSaved: Bool
     

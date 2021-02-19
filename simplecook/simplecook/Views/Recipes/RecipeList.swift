@@ -11,7 +11,8 @@ struct RecipeList: View {
     
     @EnvironmentObject var modelData: ModelData     // allows modelData to get its value automatically
     @State private var showFavoritesOnly = false
-    
+    @State private var searchText : String = ""
+
     // state for saved recipes
     @State private var showSavedOnly = false
     
@@ -24,6 +25,7 @@ struct RecipeList: View {
     
     var body: some View {
         NavigationView{
+            
             // list recipes row and destination
             List{
                 Toggle(isOn: $showSavedOnly){
