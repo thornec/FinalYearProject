@@ -20,7 +20,7 @@ struct ContentView: View {
         // tab bar
         TabView(selection: $selection){
             // search page
-            RecipeList()
+            Search()
                 .tabItem
                 {
                     Label("Search", systemImage: "magnifyingglass.circle")
