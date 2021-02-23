@@ -10,8 +10,10 @@ import Combine
 
 // recipes are of observable class to allow changes to be shown through relevant views
 final class ModelData: ObservableObject {
-    @Published var recipes: [Recipe] = load("recipesData.json")
     
+    // load data from database into arrays
+    @Published var recipes: [Recipe] = load("recipesData.json")
+        
     // categories dictionary
     var categories: [String: [Recipe]]{
         Dictionary(
@@ -20,6 +22,8 @@ final class ModelData: ObservableObject {
         )
     }
 }
+
+var shoppinglist : [ShoppingList] = load("shoppinglistData.json")
 
 // load method fetches JSON data using filename
 func load<T: Decodable>(_ filename: String) -> T {

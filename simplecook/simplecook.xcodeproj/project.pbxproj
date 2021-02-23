@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B39933A25E51E2300131E5D /* shoppinglistData.json in Resources */ = {isa = PBXBuildFile; fileRef = 1B39933925E51E2300131E5D /* shoppinglistData.json */; };
+		1B39933D25E51E3700131E5D /* ShoppingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B39933C25E51E3700131E5D /* ShoppingList.swift */; };
+		1B39934025E520BD00131E5D /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B39933F25E520BD00131E5D /* List.swift */; };
 		1B508D5825DD300C004AC0DC /* recipesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 1B508D5725DD300C004AC0DC /* recipesData.json */; };
 		1B508D5B25DD7126004AC0DC /* RecipeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B508D5A25DD7126004AC0DC /* RecipeList.swift */; };
 		1B508D5E25DD76F1004AC0DC /* RecipeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B508D5D25DD76F1004AC0DC /* RecipeDetails.swift */; };
@@ -33,6 +36,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B39933925E51E2300131E5D /* shoppinglistData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = shoppinglistData.json; sourceTree = "<group>"; };
+		1B39933C25E51E3700131E5D /* ShoppingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingList.swift; sourceTree = "<group>"; };
+		1B39933F25E520BD00131E5D /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		1B508D5725DD300C004AC0DC /* recipesData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = recipesData.json; sourceTree = "<group>"; };
 		1B508D5A25DD7126004AC0DC /* RecipeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeList.swift; sourceTree = "<group>"; };
 		1B508D5D25DD76F1004AC0DC /* RecipeDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetails.swift; sourceTree = "<group>"; };
@@ -75,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				1B73DA4725E3FD2300E5FDAC /* ShoppingRow.swift */,
+				1B39933F25E520BD00131E5D /* List.swift */,
 			);
 			path = ShoppingList;
 			sourceTree = "<group>";
@@ -168,6 +175,7 @@
 			children = (
 				1B7BD11125DD1CDB0019FDA9 /* ModelData.swift */,
 				1B91494F25DD2E5C00B01F2B /* Recipe.swift */,
+				1B39933C25E51E3700131E5D /* ShoppingList.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -175,6 +183,7 @@
 		1B7BD11625DD1DCD0019FDA9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1B39933925E51E2300131E5D /* shoppinglistData.json */,
 				1B508D5725DD300C004AC0DC /* recipesData.json */,
 				1B91494125DD267A00B01F2B /* recipes.json */,
 			);
@@ -247,6 +256,7 @@
 				1B7BD10025DBEFD30019FDA9 /* Preview Assets.xcassets in Resources */,
 				1B508D5825DD300C004AC0DC /* recipesData.json in Resources */,
 				1B91494225DD267A00B01F2B /* recipes.json in Resources */,
+				1B39933A25E51E2300131E5D /* shoppinglistData.json in Resources */,
 				1B7BD0FD25DBEFD30019FDA9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,6 +272,7 @@
 				1B74047025DEC25900D37EDA /* RecipeIngredients.swift in Sources */,
 				1B91495025DD2E5C00B01F2B /* Recipe.swift in Sources */,
 				1BA4D0FE25DFFEB800E926F3 /* CookingButton.swift in Sources */,
+				1B39933D25E51E3700131E5D /* ShoppingList.swift in Sources */,
 				1BA4D10825E0182300E926F3 /* SearchBar.swift in Sources */,
 				1B7BD10925DBF47E0019FDA9 /* RecipeImage.swift in Sources */,
 				1B74046225DEB49B00D37EDA /* CategoryHome.swift in Sources */,
@@ -270,6 +281,7 @@
 				1B7BD11225DD1CDB0019FDA9 /* ModelData.swift in Sources */,
 				1B74046925DEB86700D37EDA /* CategoryItem.swift in Sources */,
 				1B508D5E25DD76F1004AC0DC /* RecipeDetails.swift in Sources */,
+				1B39934025E520BD00131E5D /* List.swift in Sources */,
 				1B7BD0F925DBEFD10019FDA9 /* simplecookApp.swift in Sources */,
 				1B73DA4825E3FD2300E5FDAC /* ShoppingRow.swift in Sources */,
 				1B74046625DEB6CE00D37EDA /* CategoryRow.swift in Sources */,
