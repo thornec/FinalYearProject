@@ -13,10 +13,11 @@ struct ShopList: View {
     var body: some View {
 
         VStack{
-            List(shoppinglist){ item in
-                ShoppingRow(recipe : item)
+                List(shoppinglist){ item in
+                    ShoppingRow(recipe : item)
+                }
             }
-        }
+        
         
 
     }

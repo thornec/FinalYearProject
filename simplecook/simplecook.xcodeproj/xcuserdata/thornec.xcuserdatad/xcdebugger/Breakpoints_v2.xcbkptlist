@@ -40,7 +40,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "33B4D83A-0C95-44B1-BBE2-152062C0336B"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "simplecook/Views/Helpers/Search.swift"
@@ -50,6 +50,53 @@
             endingLineNumber = "7"
             landmarkName = "Search"
             landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "33B4D83A-0C95-44B1-BBE2-152062C0336B - d7b5316edfdabbea"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "property wrapper backing initializer of simplecook.Search.(searchText in _7889E265D6ACE1850B0E47259B108E8D) : Swift.String"
+                  moduleName = "simplecook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thornec/Desktop/FinalYearProject/simplecook/simplecook/Views/Helpers/Search.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "8"
+                  endingLineNumber = "8"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  uuid = "33B4D83A-0C95-44B1-BBE2-152062C0336B - ff68e1fddb94d67d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "simplecook.Search.init(modelData: SwiftUI.EnvironmentObject&lt;simplecook.ModelData&gt;) -&gt; simplecook.Search"
+                  moduleName = "simplecook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thornec/Desktop/FinalYearProject/simplecook/simplecook/Views/Helpers/Search.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "8"
+                  endingLineNumber = "8"
+                  offsetFromSymbolStart = "9">
+               </Location>
+               <Location
+                  uuid = "33B4D83A-0C95-44B1-BBE2-152062C0336B - 4dea7f5e6ccd098a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "simplecook.Search.init() -&gt; simplecook.Search"
+                  moduleName = "simplecook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thornec/Desktop/FinalYearProject/simplecook/simplecook/Views/Helpers/Search.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "8"
+                  endingLineNumber = "8"
+                  offsetFromSymbolStart = "35">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

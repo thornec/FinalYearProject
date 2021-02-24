@@ -23,7 +23,7 @@ final class ModelData: ObservableObject {
     }
 }
 
-var shoppinglist : [ShoppingList] = load("shoppinglistData.json")
+var shoppinglist : [Recipe] = load("shoppinglistData.json")
 
 // load method fetches JSON data using filename
 func load<T: Decodable>(_ filename: String) -> T {

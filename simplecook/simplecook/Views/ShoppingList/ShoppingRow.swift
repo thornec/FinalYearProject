@@ -8,18 +8,13 @@
 import SwiftUI
 
 struct ShoppingRow: View {
-    var recipe: ShoppingList
+    var recipe: Recipe
     
     var body: some View {
         VStack(alignment: .leading){
             HStack {
-                Image(recipe.imageName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width:50, height:50)
-                    .clipShape(Circle())
-                    .overlay(Circle().stroke(Color.white, lineWidth: 1))
-                    
+                
+                ShoppingImage(recipe: recipe)
                 
                 Text(recipe.name)
                                         
@@ -31,26 +26,11 @@ struct ShoppingRow: View {
             .overlay(RoundedRectangle(cornerRadius: 10.0).stroke(Color.white, lineWidth: 1))
             .shadow(radius:7)
             
+            CheckList(ingredients : recipe.ingredients)
             
-            ForEach(recipe.ingredients, id: \.self){ ingredient in
-                HStack{
-                    Text(ingredient)
-                    
-                    
-                }
-                Divider()
-            }
-            .padding()
-            
-            
-            
-            
-                
-                
         }
-        
-        
-        
+        .frame(width: 350, height: 225)
+        //.border(Color.black)
     }
     
 }
@@ -62,6 +42,8 @@ struct ShoppingRow_Previews: PreviewProvider {
     static var previews: some View {
         Group{
             ShoppingRow(recipe: shoppinglist[0])
+            ShoppingRow(recipe: shoppinglist[1])
+
         }
         //.previewLayout(.fixed(width:300, height:70))
         // previewLayout modifier adjusted to represent a row in a list

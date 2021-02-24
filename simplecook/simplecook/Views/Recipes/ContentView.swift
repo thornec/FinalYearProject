@@ -27,7 +27,7 @@ struct ContentView: View {
                 }
             
             // shopping list page
-            CategoryHome()
+            ShopList()
                 .tabItem
                 {
                     Label("Shopping List", systemImage: "list.bullet")

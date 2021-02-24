@@ -59,6 +59,10 @@ struct RecipeIngredients: View {
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                 }
                 
+                Button("Add to Shopping List"){
+                    shoppinglist.append(recipe)
+                }
+                
                 
                 VStack(alignment:(.leading)){
                     Text("method")
