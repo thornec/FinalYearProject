@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ShoppingRow: View {
-    var recipe: Recipe
     
+    var recipe : Recipe
+
     var body: some View {
         VStack(alignment: .leading){
             HStack {
@@ -37,7 +38,8 @@ struct ShoppingRow: View {
 
 struct ShoppingRow_Previews: PreviewProvider {
     //static var shoppinglist = ModelData().shoppinglist
-    
+    static var shoppinglist = ModelData().shoppinglist
+
     
     static var previews: some View {
         Group{

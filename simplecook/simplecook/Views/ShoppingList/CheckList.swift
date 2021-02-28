@@ -39,6 +39,9 @@ struct CheckList: View {
 }
 
 struct CheckList_Previews: PreviewProvider {
+    
+    static var shoppinglist = ModelData().shoppinglist
+    
     static var previews: some View {
         CheckList(ingredients : shoppinglist[0].ingredients)
     }

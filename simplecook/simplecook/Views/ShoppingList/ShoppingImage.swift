@@ -10,7 +10,7 @@ import SwiftUI
 struct ShoppingImage: View {
     
     var recipe : Recipe
-    
+
     var body: some View {
         Image(recipe.imageName)
             .resizable()
@@ -22,6 +22,10 @@ struct ShoppingImage: View {
 }
 
 struct ShoppingImage_Previews: PreviewProvider {
+    
+    static var shoppinglist = ModelData().shoppinglist
+
+    
     static var previews: some View {
         ShoppingImage(recipe: shoppinglist[0])
     }

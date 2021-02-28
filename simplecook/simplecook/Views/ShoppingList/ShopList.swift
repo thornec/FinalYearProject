@@ -10,10 +10,12 @@ import SwiftUI
     
 struct ShopList: View {
     
+    @EnvironmentObject var modelData: ModelData     // allows modelData to get its value automatically
+
     var body: some View {
 
         VStack{
-                List(shoppinglist){ item in
+            List(modelData.shoppinglist){ item in
                     ShoppingRow(recipe : item)
                 }
             }
@@ -24,8 +26,9 @@ struct ShopList: View {
 }
 
 struct ShopList_Previews: PreviewProvider {
-    
+
     static var previews: some View {
-        ShopList()
+        ShopList().environmentObject(ModelData())
+
     }
 }

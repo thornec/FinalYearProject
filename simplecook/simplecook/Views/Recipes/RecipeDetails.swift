@@ -37,14 +37,24 @@ struct RecipeDetails: View {
                 }
                 .padding()
                 
-                
-                
+        
                 // border
                 Divider()
   
+                // ingredients and method display
+                iPages{
+                    RecipeIngredients(recipe: recipe)
+                    
+                    // method calls
+                    RecipeMethod(step: recipe.method[0], image_string : "step1")
 
-                RecipeIngredients(recipe: recipe)
+                }
+                .dotsBackgroundStyle(.prominent)
+                .frame(width: 380, height: 400, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .shadow(radius: 7)
 
+
+                // cooking mode button
                 CookingButton()
                     .offset(x:15)
                 
@@ -55,7 +65,6 @@ struct RecipeDetails: View {
         .navigationTitle(recipe.name)
         .navigationBarTitleDisplayMode(.inline)
         
-        
     }
 }
 
@@ -65,8 +74,6 @@ struct RecipeDetails_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            RecipeDetails(recipe: modelData.recipes[0])
-                .environmentObject(modelData)
             RecipeDetails(recipe: modelData.recipes[0])
                 .environmentObject(modelData)
         }

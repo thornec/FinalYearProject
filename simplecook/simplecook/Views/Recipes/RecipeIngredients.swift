@@ -14,81 +14,38 @@ struct RecipeIngredients: View {
     @State var trim : CGFloat = 0
     @State var checked = false
     
+    @EnvironmentObject var modelData: ModelData     // allows modelData to get its value automatically
+    
     var body: some View {
         ScrollView{
             
-            iPages {
+            VStack {
                 VStack(alignment:(.leading)){
                     
                     Text("ingredients")
                         .font(.title)
                         .offset(x:10)
                     
-                    // display each recipe ingredient
-                    ForEach(recipe.ingredients, id: \.self){ ingredient in
-                        HStack{
-                            Text(ingredient)
-                                .offset(x:30)
-                                .font(.title)
-                            
-                            Spacer()
-                            
-                            Button(action: {
-                                if !self.checked {
-                                    withAnimation(Animation.easeIn(duration: 0.4)){
-                                        self.trim = 1
-                                        self.checked.toggle()
-                                    }
-                                }
-                                else {
-                                    withAnimation{
-                                        self.trim = 0
-                                        self.checked.toggle()
-                                    }
-                                }
-                            })
-                            {
-                                Checkbox(checked: $checked, trim: $trim)
-                            }
+                    // allows button to be laid onto ingredient list
+                    ZStack{
+                        // display each recipe ingredient
+                        CheckList(ingredients: recipe.ingredients)
+
+                        // add to shopping list button
+                        Button(action: {
+                            modelData.shoppinglist.append(recipe)
+                        }){
+                            Image(systemName: "list.bullet")
+                                .resizable()
+                                .frame(width:30, height:30)
                         }
-                        .padding()
-                        
-                        Divider()
-                            
-                    }
-                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                }
-                
-                Button("Add to Shopping List"){
-                    shoppinglist.append(recipe)
-                }
-                
-                
-                VStack(alignment:(.leading)){
-                    Text("method")
-                        //.offset(x:10)
-                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                        .padding()
-                    
-                    // display each recipe ingredient
-                    ForEach(recipe.method, id: \.self){ method in
-                        HStack{
-                            Text(method)
-                                .font(.title)
-                            
-                        }
-                        
-                        Divider()
+                        .offset(x:150, y:130)
 
                     }
-
                 }
-                .padding()
             }
-            .dotsBackgroundStyle(.prominent)
             .padding()
-            .frame(width: 380, height: 800, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-            //.overlay(Square.stroke(Color.white, lineWidth: 4))
+            .frame(width: 380, height: 400, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             .shadow(radius: 7)
         
             
@@ -101,7 +58,8 @@ struct RecipeIngredients_Previews: PreviewProvider {
     static var recipes = ModelData().recipes
 
     static var previews: some View {
-        RecipeIngredients(recipe: recipes[0])
+        RecipeIngredients(
+            recipe : recipes[0]).environmentObject(ModelData())
     }
 }
 
