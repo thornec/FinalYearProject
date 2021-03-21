@@ -11,12 +11,18 @@ import Combine
 // recipes are of observable class to allow changes to be shown through relevant views
 final class ModelData: ObservableObject {
     
+    @Published var dictionaryEntries = [
+        "poached" : "poaching is a cooking technique that involves cooking by submerging food in a liquid, such as water, milk, stock or wine. poaching is particularly suitable for delicate food, such as eggs, poultry, fish and fruit, which might easily fall apart or dry out using other cooking methods. poaching is often considered a healthy method of cooking because it does not use fat to cook or flavor the food"
+        ]
+    
     @Published var shoppinglist : [Recipe] = load("shoppinglistData.json")
 
-    
+    @Published var myrecipes : [Recipe] = load("MyRecipesData.json")
+
     // load data from database into arrays
     @Published var recipes: [Recipe] = load("recipesData.json")
-        
+
+    
     // categories dictionary
     var categories: [String: [Recipe]]{
         Dictionary(

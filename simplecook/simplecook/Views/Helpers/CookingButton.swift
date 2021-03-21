@@ -8,35 +8,37 @@
 import SwiftUI
 
 struct CookingButton: View {
+    
+    var string : String
+    
     var body: some View {
         VStack{
-            Button(action: {}) {
-                HStack{
-                    // start cooking button
-                    Text("Start Cooking!")
-                        .padding(.horizontal)                      // creates wide rectangle
-                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                                        
-                    
-                    // cooking image
-                    Image(systemName: "play")                      // play button
-                    
-                }
-                .padding()
+            HStack{
+                // cooking image
+                //Image(systemName: "play")
+                // start cooking button
+                Text(string)
+                    .padding(.horizontal)                      // creates wide rectangle
+                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                    .frame(width:310, height:100)
+                    .background(Color.white)
+                    .foregroundColor(.black)                    // sets color of text
+                    .cornerRadius(20)                           // rounds corners
+                    .shadow(radius:9)
+                    .padding()
+                    //.border(Color.black)
+                    .offset(y:-40)
             }
-            .frame(width:350, height:100)
-            .background(Color.white)
-            .foregroundColor(.black)        // sets color of text
-            .cornerRadius(20)               // rounds corners
-            .shadow(radius:9)
-
         }
-
     }
 }
 
 struct CookingButton_Previews: PreviewProvider {
+    
+    static var recipes = ModelData().recipes
+    
+    
     static var previews: some View {
-        CookingButton()
+        CookingButton(string:recipes[0].name)
     }
 }

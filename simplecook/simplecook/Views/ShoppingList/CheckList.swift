@@ -15,9 +15,8 @@ struct CheckList: View {
     var body: some View {
         
         VStack {
-            
             // convert ingredient list into checklist struct array
-            var checklist = createList(ingredientslist: ingredients)
+            let checklist = createList(ingredientslist: ingredients)
             
             List{
                 ForEach(checklist, id: \.self){ item in
@@ -30,12 +29,18 @@ struct CheckList: View {
                             CheckBox(checked: item.isChecked)
                         }
                     }
+                }
             }
-
         }
-
+        .frame(width:330, height:240)
+        .padding(.horizontal)                      // creates wide rectangle
+        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+        .background(Color.white)
+        .foregroundColor(.black)                    // sets color of text
+        .cornerRadius(20)                           // rounds corners
+        .shadow(radius:9)
+        .padding()
     }
-}
 }
 
 struct CheckList_Previews: PreviewProvider {
@@ -47,7 +52,7 @@ struct CheckList_Previews: PreviewProvider {
     }
 }
 
-    struct checkListItem : Hashable {
+struct checkListItem : Hashable {
     var isChecked : Bool = false     // default val false
     var title : String
 }

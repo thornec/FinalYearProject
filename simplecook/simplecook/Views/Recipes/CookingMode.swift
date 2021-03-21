@@ -14,35 +14,28 @@ struct CookingMode: View {
     var recipe : Recipe
     
     var body: some View {
-        
-        
-        
-        
-        // steps of recipe
-        iPages{
-            ZStack{
-                    Image("poachedeggs")
-                    Text(recipe.method[0])
-                }
-            ZStack{
-                    Image("poachedeggs")
-                    Text(recipe.method[1])
-                }
-            ZStack{
-                    Image("poachedeggs")
-                    Text(recipe.method[2])
-                }
-            ZStack{
-                    Image("poachedeggs")
-                    Text(recipe.method[3])
-                }
-            
-        }
-        .dotsBackgroundStyle(.prominent)
+        ScrollView{
+            TabView {
+                ForEach(Array(zip(recipe.method,recipe.method_images)), id: \.0){ step in
+                       VStack {
+                            CookingModeImage(image:step.1)
+                                .edgesIgnoringSafeArea(.top)
 
-        
-            
-        
+
+                            Text(step.0)
+                               .padding(50)
+                                .font(.title)
+                        
+                            Spacer()
+                       }
+                }
+            }
+            .frame(width:UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            .tabViewStyle(PageTabViewStyle())
+            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+        }
+        .edgesIgnoringSafeArea(.top)
+
     }
 }
 

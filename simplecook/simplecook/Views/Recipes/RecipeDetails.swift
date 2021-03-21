@@ -20,51 +20,52 @@ struct RecipeDetails: View {
     }
     
     var body: some View {
-        ScrollView{
+        NavigationView{
             
-            // import recipe image component
-            RecipeImage(image: recipe.image)
-                .ignoresSafeArea(edges: .top)
-                
-            VStack(alignment: .leading){
+            ScrollView{
+            
+                // import recipe image component
+                RecipeImage(image: recipe.image)
+                    .ignoresSafeArea(edges: .top)
+
+                // recipe title
                 HStack{
-                    // recipe title
                     Text(recipe.name)
                         .font(.title)
-                        .padding(10)
+                        .padding()
                         .foregroundColor(.primary)
+                
+
                     SaveButton(isSet: $modelData.recipes[recipeIndex].isSaved)
                 }
-                .padding()
                 
-        
-                // border
-                Divider()
-  
-                // ingredients and method display
-                iPages{
+                VStack(alignment: .leading){
+                    // recipe ingredients list
                     RecipeIngredients(recipe: recipe)
+                        .padding()
+                
+                    if(!recipe.isCustom){
+                        // recipe method
+                        RecipeMethod(recipe:recipe)
+                            .padding()
+                    } else {
+                        CustomMethod(recipe:recipe)
+                    }
                     
-                    // method calls
-                    RecipeMethod(step: recipe.method[0], image_string : "step1")
-
+                    if(!recipe.isCustom){
+                        // cooking mode button
+                        NavigationLink(destination: CookingMode(recipe:recipe)){
+                            CookingButton(string:"start cooking!")
+                        }
+                        .padding()
+                    }
                 }
-                .dotsBackgroundStyle(.prominent)
-                .frame(width: 380, height: 400, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .shadow(radius: 7)
-
-
-                // cooking mode button
-                CookingButton()
-                    .offset(x:15)
                 
                 
             }
-            .padding()
         }
         .navigationTitle(recipe.name)
         .navigationBarTitleDisplayMode(.inline)
-        
     }
 }
 
@@ -79,3 +80,12 @@ struct RecipeDetails_Previews: PreviewProvider {
         }
     }
 }
+
+
+
+
+//}
+//.dotsBackgroundStyle(.prominent)
+//.frame(width: 380, height: 400, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+//.shadow(radius: 7)
+

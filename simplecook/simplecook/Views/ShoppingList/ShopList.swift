@@ -14,15 +14,18 @@ struct ShopList: View {
 
     var body: some View {
 
-        VStack{
-            List(modelData.shoppinglist){ item in
-                    ShoppingRow(recipe : item)
+        ScrollView{
+            VStack{
+                ForEach(modelData.shoppinglist, id:\.self){ item in
+                        ShoppingRow(recipe : item)
+                    }
                 }
-            }
-        
-        
 
+
+        }
+        
     }
+        
 }
 
 struct ShopList_Previews: PreviewProvider {

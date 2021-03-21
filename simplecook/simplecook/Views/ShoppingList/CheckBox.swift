@@ -22,8 +22,10 @@ struct CheckBox: View {
             }) {
                 ZStack{
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.gray)
+                        .fill(Color.gray.opacity(0.2))
                         .frame(width: 30, height: 30)
+                        .foregroundColor(Color.gray)
+
                     if checked {
                         Image(systemName: "checkmark")
                             .foregroundColor(Color.white)

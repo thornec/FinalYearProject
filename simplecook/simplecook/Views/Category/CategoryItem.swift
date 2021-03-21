@@ -17,9 +17,23 @@ struct CategoryItem: View {
                 .resizable()
                 .frame(width:155, height: 155)
                 .cornerRadius(5)
-            Text(recipe.name)
-                .foregroundColor(.primary)
-                .font(.caption)
+            HStack{
+                Text(recipe.name)
+                    .foregroundColor(.primary)
+                    .font(.system(size:16))
+                    .font(.caption)
+                    
+                
+                // check if recipe is saved
+                if recipe.isSaved {
+                    Image(systemName: "star.fill")
+                        .resizable()
+                        .frame(width:16,height:16)
+                        .foregroundColor(.yellow)
+                    
+                }
+            }
+            
         }
         .padding(.leading, 15)
     }

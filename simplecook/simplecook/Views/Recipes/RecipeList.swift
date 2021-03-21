@@ -25,7 +25,6 @@ struct RecipeList: View {
     
     var body: some View {
         NavigationView{
-            
             // list recipes row and destination
             List{
                 Toggle(isOn: $showSavedOnly){
@@ -37,9 +36,11 @@ struct RecipeList: View {
                         RecipeRow(recipe: recipe)
                     }
                 }
+                .padding()
             }
+            .navigationTitle("Recipes")
+
         }
-        .navigationTitle("Recipes")
     }
 }
 

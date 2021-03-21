@@ -1,39 +1,45 @@
 [
     {
-        "name": "Poached Eggs",
+        "name": "poached eggs",
         "category": "Breakfast",
         "cooktime": "5 minutes",
         "price": "30 cent",
         "id": 1001,
-        "isFeatured": true,
+        "isCustom": false,
         "isSaved": true,
-        "ingredients": ["egg","water"],
+        "ingredients": ["eggs","water"],
+        "servings": [2],
         "method": ["bring a saucepan of water to a light simmer","crack the egg into a container and drop the egg using the container into the simmering water","placed a lid over the saucepan and leave the water simmer and poach the egg for 3/4 minutes","remove the egg from the water with a slotted spoon and plate!"],
+        "method_images": ["step1","step2","step3","step4"],
         "imageName": "poachedeggs"
     },
     {
-        "name": "Toast",
+        "name": "tomato sauce",
         "category": "Lunch",
-        "cooktime": "3 minutes",
-        "price": "10 cent",
+        "cooktime": "10 minutes",
+        "price": "1 euro",
         "id": 1002,
-        "isFeatured": true,
+        "isCustom": false,
         "isSaved": false,
-        "ingredients": ["bread","butter"],
-        "method": ["put bread into a toaster","toast the bread","take the bread from the toaster","spread butter on toast and plate!"],
-        "imageName": "toast"
+        "ingredients": ["onion","garlic","cherry tomatoes","basil","olive oil"],
+        "servings": [0,1],
+        "method": ["add a few tablespoons of oil to a pan and turn on the gas to low heat, peel and slice the cloves of garlic and add to the pan","cook for 3 minutes until golden brown, then add the cherry tomatoes","cook on medium heat for about 7 minutes until the tomatoes are broken down into a sauce","add the chopped basil and seasoning andserve!"],
+        "method_images": ["tsstep1","tsstep2","tsstep3","tsstep4"],
+        "imageName": "ts"
     },
     {
-        "name": "Pasta Pesto",
+        "name": "pasta pesto",
         "category": "Dinner",
         "cooktime": "10 minutes",
         "price": "1 euro",
         "id": 1003,
-        "isFeatured": true,
+        "isCustom": false,
         "isSaved": false,
-        "ingredients": ["pasta","pesto","parmigiano"],
-        "method": ["pour water into a pot and bring to the boil","season water with salt","pour pasta into the pot and leave boil for ten/twelve minutes","taste the pasta before removing from the water to make sure it is cooked", "drain water using a collinder", "plate and mix the pesto!"],
-        "imageName": "pastapesto"
+        "ingredients": ["pasta","parmigiano","basil","olive oil","garlic","pine nuts"],
+        "servings": [0,1],
+        "method": ["bring a pot of water to the boil, mix the salt into the water and add the pasta","stir the pasta into the pasta and cook for around 8 minutes","remove the pasta from the water","add the basil, pine nuts, cheese, salt and pepper to the blender and blitz, slowly adding the oil","mix the pesto into the pasta","plate!"],
+        "method_images": ["ppstep1","ppstep2","ppstep3","ppstep4","ppstep5","ppstep6"],
+        "imageName": "pastapesto-1"
     }
 ]
 

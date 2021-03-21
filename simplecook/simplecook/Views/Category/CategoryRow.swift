@@ -8,16 +8,20 @@
 import SwiftUI
 
 struct CategoryRow: View {
+    
     var categoryName: String
     var items: [Recipe]
     
     var body: some View {
         VStack(alignment: .leading) {
+            // display category name
             Text(categoryName)
-                .font(.headline)    // display category name
+                .font(.system(size:25))
+                .font(.headline)
                 .padding(.leading, 15)
                 .padding(.top, 5)
             
+            // display each recipe in category
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0){
                     ForEach(items) { recipe in

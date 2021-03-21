@@ -5,10 +5,12 @@
         "cooktime": "5 minutes",
         "price": "30 cent",
         "id": 1001,
-        "isFeatured": true,
+        "isCustom": true,
         "isSaved": true,
         "ingredients": ["egg","water"],
+        "servings": [0,1],
         "method": ["bring a saucepan of water to a light simmer","crack the egg into a container and drop the egg using the container into the simmering water","placed a lid over the saucepan and leave the water simmer and poach the egg for 3/4 minutes","remove the egg from the water with a slotted spoon and plate!"],
+        "method_images": ["step1","step2","step3"],
         "imageName": "poachedeggs"
     }
 ]

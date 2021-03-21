@@ -10,11 +10,12 @@ import SwiftUI
 struct MethodImage: View {
     
     var image : String
-    
+
     var body: some View {
+        
         Image(image)
             .resizable()
-            .frame(width:300, height: 200)
+            .frame(width:400, height: 600)
             .clipShape(RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/))
             .overlay(RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/).stroke(Color.white, lineWidth: 4))
             .shadow(radius: 7)
@@ -22,7 +23,8 @@ struct MethodImage: View {
 }
 
 struct MethodImage_Previews: PreviewProvider {
+    
     static var previews: some View {
-        MethodImage(image : "step1")
+        MethodImage(image : "phonedimensions")
     }
 }
