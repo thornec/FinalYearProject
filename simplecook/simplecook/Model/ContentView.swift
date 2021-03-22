@@ -10,7 +10,8 @@ import SwiftUI
 // content and layout
 struct ContentView: View {
     @State private var selection: Tab = .featured
-
+    @State private var myrecipes = MyRecipeModel.data   // source of truth for custom recipes
+    
     enum Tab {
         case featured
         case list
@@ -34,11 +35,11 @@ struct ContentView: View {
                 }
             
             // shopping list page
-            MyRecipes()
-                .tabItem
-                {
-                    Label("My Recipes", systemImage: "person.circle")
-                }
+            //MyRecipeView(recipes: $myrecipes)
+              //  .tabItem
+                //{
+                  //  Label("My Recipes", systemImage: "person.circle")
+                //}
             // shopping list page
             
             
