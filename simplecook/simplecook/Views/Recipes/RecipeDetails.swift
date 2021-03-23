@@ -10,6 +10,10 @@ import iPages
 
 struct RecipeDetails: View {
     @EnvironmentObject var modelData: ModelData
+    @State private var isCookingMode = false
+    @State var isSwipping = true
+    @State var startPosition : CGPoint = .zero  // begining position of user drag
+    
     var recipe: Recipe
     
     // compute index of input recipe by comparing it to model data
@@ -20,52 +24,52 @@ struct RecipeDetails: View {
     }
     
     var body: some View {
-        NavigationView{
-            
-            ScrollView{
-            
-                // import recipe image component
-                RecipeImage(image: recipe.image)
-                    .ignoresSafeArea(edges: .top)
+        GeometryReader { geometry in
+            NavigationView {
+                ScrollView  {
+                    // import recipe image component
+                    Image(recipe.imageName)
+                        .edgesIgnoringSafeArea(.top)
+                        .shadow(radius: 9)
 
-                // recipe title
-                HStack{
-                    Text(recipe.name)
-                        .font(.title)
-                        .padding()
-                        .foregroundColor(.primary)
-                
-
-                    SaveButton(isSet: $modelData.recipes[recipeIndex].isSaved)
-                }
-                
-                VStack(alignment: .leading){
                     // recipe ingredients list
                     RecipeIngredients(recipe: recipe)
-                        .padding()
-                
-                    if(!recipe.isCustom){
-                        // recipe method
-                        RecipeMethod(recipe:recipe)
-                            .padding()
-                    } else {
-                        CustomMethod(recipe:recipe)
-                    }
+                        .frame(width:geometry.size.width)
+                        .padding(20)
                     
-                    if(!recipe.isCustom){
-                        // cooking mode button
-                        NavigationLink(destination: CookingMode(recipe:recipe)){
-                            CookingButton(string:"start cooking!")
+                    VStack(alignment: .leading){
+                        // built in recipe
+                        if(!recipe.isCustom){
+                            Button {
+                                isCookingMode = true
+                            } label: {
+                                CookingButton(string:"start cooking!")
+                            }
+                        } else {
+                            // custom recipe
+                            CustomMethod(recipe:recipe)
                         }
-                        .padding()
                     }
+                    .padding(20)
                 }
-                
-                
+            }
+            .navigationTitle(recipe.name)
+            .navigationBarItems(trailing: SaveButton(isSet: $modelData.recipes[recipeIndex].isSaved).font(.title))
+            .fullScreenCover(isPresented:$isCookingMode){
+                // present cooking mode
+                NavigationView{
+                    CookingMode(recipe:recipe)
+                        .navigationBarItems(leading:
+                            Button(action: {
+                                isCookingMode = false
+                            }){
+                                Text("Back")
+                            }
+                    )
+                }
             }
         }
-        .navigationTitle(recipe.name)
-        .navigationBarTitleDisplayMode(.inline)
+        //.navigationBarTitleDisplayMode(.inline)
     }
 }
 

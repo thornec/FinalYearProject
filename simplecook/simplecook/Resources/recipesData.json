@@ -11,7 +11,7 @@
         "servings": [2],
         "method": ["bring a saucepan of water to a light simmer","crack the egg into a container and drop the egg using the container into the simmering water","placed a lid over the saucepan and leave the water simmer and poach the egg for 3/4 minutes","remove the egg from the water with a slotted spoon and plate!"],
         "method_images": ["step1","step2","step3","step4"],
-        "imageName": "poachedeggs"
+        "imageName": "poachedeggcover"
     },
     {
         "name": "tomato sauce",

@@ -16,38 +16,44 @@ struct MyRecipeView: View {
     let saveAction: () -> Void
     
     var body: some View {
-        NavigationView {
-            List {
-                // display each my recipe row
-                ForEach(recipes){ recipe in
-                    NavigationLink(destination: MyRecipeDetailView(recipe: binding(for: recipe))) {
-                        MyRecipeCard(recipe : recipe)
+        GeometryReader { geometry in
+            NavigationView {
+                VStack(alignment: .leading) {
+                        // display each my recipe row
+                        ForEach(recipes){ recipe in
+                            NavigationLink(destination: MyRecipeDetailView(recipe: binding(for: recipe))){
+                                MyRecipeCard(recipe : recipe)
+                            }
+                        }
+                        .frame(width:geometry.size.width, height:geometry.size.height)
+                        .navigationTitle("My Recipes")
+                        .navigationBarItems(trailing: Button(action: {
+                        isAddMode = true // user has entered add recipe mode
+                    }) {
+                        Image(systemName: "plus")   // add a new recipe
+                            .font(.title)
+                    })
+                    .sheet(isPresented: $isAddMode){
+                        NavigationView {
+                            EditRecipeView(recipeData: $newRecipe)    // pass new recipe data to be filled
+                                .navigationBarItems(leading: Button("Dismiss") {
+                                    isAddMode = false   // exit add mode
+                                }, trailing: Button("Add") {
+                                    let new = MyRecipeModel(title: newRecipe.title, ingredients: newRecipe.ingredients, method: newRecipe.method, cost: newRecipe.cost, cooktime: newRecipe.cooktime, imageName:"myrecipe", isCustom: true, isSaved: false)  // create new recipe with values from user
+                                    recipes.append(new) // push recipe onto list
+                                    isAddMode = false   // exit add mode
+                                })
+                        }
+                        // triggered when value changes
+                        .onChange(of: scenePhase) { phase in
+                            // if unactive call save
+                            if phase == .inactive { saveAction() }
+                        }
                     }
+                    
+                    Spacer()
                 }
             }
-            .navigationTitle("My Recipes")
-            .navigationBarItems(trailing: Button(action: {
-                isAddMode = true // user has entered add recipe mode
-            }) {
-                        Image(systemName: "plus")   // add a new recipe
-            })
-            .sheet(isPresented: $isAddMode){
-                NavigationView {
-                    EditRecipeView(recipeData: $newRecipe)    // pass new recipe data to be filled
-                        .navigationBarItems(leading: Button("Dismiss") {
-                            isAddMode = false   // exit add mode
-                        }, trailing: Button("Add") {
-                            let new = MyRecipeModel(title: newRecipe.title, ingredients: newRecipe.ingredients, method: newRecipe.method, cost: newRecipe.cost, cooktime: newRecipe.cooktime, isCustom: true, isSaved: false)  // create new recipe with values from user
-                            recipes.append(new) // push recipe onto list
-                            isAddMode = false   // exit add mode
-                        })
-                }
-                // triggered when value changes
-                .onChange(of: scenePhase) { phase in
-                    // if unactive call save
-                    if phase == .inactive { saveAction() }
-                }
-        }
         }
     }
     

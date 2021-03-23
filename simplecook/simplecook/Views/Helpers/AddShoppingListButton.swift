@@ -13,19 +13,15 @@ struct AddShoppingListButton: View {
     var recipe : Recipe
     
     var body: some View {
-        
         Button(action: {
             modelData.shoppinglist.append(recipe)
         }){
-            Text("add to shopping list")
-                .padding(.horizontal)                      // creates wide rectangle
-                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                .frame(width:330, height:100)
+            Image(systemName: "cart.badge.plus")
+                .font(.largeTitle)
+                .padding()
                 .background(Color.white)
-                .foregroundColor(.black)                    // sets color of text
                 .cornerRadius(20)                           // rounds corners
                 .shadow(radius:9)
-                .padding()
         }
     }
 }

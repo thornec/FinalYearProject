@@ -11,14 +11,21 @@ struct EditRecipeView: View {
     @Binding var recipeData : MyRecipeModel.Data    // passed from detail view
     @State private var newIngredient = ""   // hold new ingredient entered
     @State private var newStep = ""   // hold new step entered
-
+    @State private var isSaved = false
+    
     var body: some View {
         List {
             // recipe title
             Section(header: Text("Recipe Title")) {
-                // include title string binding
-                TextField("Title", text: $recipeData.title)
+            HStack{
+                    // include title string binding
+                    TextField("Title", text: $recipeData.title)
+                }
             }
+            Toggle(isOn: $recipeData.isSaved){
+                Text("Save Recipe")
+            }
+            
             // recipe cook time
             Section(header: Text("Recipe Cook Time")) {
                 // include cook time int binding

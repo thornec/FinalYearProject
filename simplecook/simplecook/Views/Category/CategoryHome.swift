@@ -10,10 +10,14 @@ import SlidingTabView
 
 struct CategoryHome: View {
     
+  //  @Binding var recipe: MyRecipeModel
+   // @State private var isEditMode = false
+   // @State private var data: MyRecipeModel.Data = MyRecipeModel.Data()
+    
     @EnvironmentObject var modelData: ModelData
     @State private var selectedTabIndex = 0
 
-    
+    @State private var isAddMode = false
     @State private var searchText : String = ""
 
     
@@ -94,51 +98,62 @@ struct CategoryHome: View {
     
     
     var body: some View {
-            NavigationView {
-                VStack() {
-                    Text("").padding(40)
-                    
-                    VStack{
-                    ScrollView{
-                        
-                        // search bar
-                        SearchBar(text: $searchText, placeholder: "search by recipe or ingredients")
-                            .padding()
-                        
-                            SlidingTabView(selection: self.$selectedTabIndex, tabs: ["All", "Saved", "Personal"])
-                            // all
-                            if(selectedTabIndex == 0){
-                                CategoryRow(categoryName: "Breakfast", items: filteredBreakfast)
-                                CategoryRow(categoryName: "Lunch", items: filteredLunch)
-                                CategoryRow(categoryName: "Dinner", items: filteredDinner)
-                            }
-                            // saved
-                            if(selectedTabIndex == 1){
-                                CategoryRow(categoryName: "Breakfast", items: savedBreakfast)
-                                CategoryRow(categoryName: "Lunch", items: savedLunch)
-                                CategoryRow(categoryName: "Dinner", items: savedDinner)
-                            }
-                            // personal
-                            if(selectedTabIndex == 2){
-                                CategoryRow(categoryName: "Breakfast", items: personalBreakfast)
-                                CategoryRow(categoryName: "Lunch", items: personalLunch)
-                                CategoryRow(categoryName: "Dinner", items: personalDinner)
-                            }
-                    
-                        }
-                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                        .frame(width:390, height:900)
-                        .background(Color.white)
-                        .foregroundColor(.black)                    // sets color of text
-                        .cornerRadius(20)                           // rounds corners
-                        .shadow(radius:9)
-                    .offset(y:50)
+        NavigationView {
+            ScrollView {
+                VStack{
+                    // search bar
+                    SearchBar(text: $searchText, placeholder: "search by recipe or ingredients")
+                            
+                    SlidingTabView(selection: self.$selectedTabIndex, tabs: ["All", "Saved", "Personal"])
+                    // all
+                    if(selectedTabIndex == 0){
+                        CategoryRow(categoryName: "Breakfast", items: filteredBreakfast)
+                        CategoryRow(categoryName: "Lunch", items: filteredLunch)
+                        CategoryRow(categoryName: "Dinner", items: filteredDinner)
+                    }
+                    // saved
+                    if(selectedTabIndex == 1){
+                        CategoryRow(categoryName: "Breakfast", items: savedBreakfast)
+                        CategoryRow(categoryName: "Lunch", items: savedLunch)
+                        CategoryRow(categoryName: "Dinner", items: savedDinner)
+                    }
+                    // personal
+                    if(selectedTabIndex == 2){
+                        CategoryRow(categoryName: "Breakfast", items: personalBreakfast)
+                        CategoryRow(categoryName: "Lunch", items: personalLunch)
+                        CategoryRow(categoryName: "Dinner", items: personalDinner)
+                    }
                 }
-                .navigationTitle("Recipes")
-
+                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                .background(Color.white)
+                .foregroundColor(.black)                    // sets color of text
+                .cornerRadius(20)                           // rounds corners
+                .shadow(radius:9)
+            }
+            // nav bar title
+            .navigationTitle("Recipes")
+            // add recipe button
+            .navigationBarItems(trailing: Button(action: {
+                isAddMode = true                            // user has entered add recipe mode
+            }) {
+                Image(systemName: "plus")                   // add a new recipe
+                    .font(.title)
+            })
+            // cover screen in add recipe mode
+            .fullScreenCover(isPresented: $isAddMode){
+                // present add mode using entire screen
+                NavigationView {
+                    Text("hello")
+                        .navigationTitle("Create a New Recipe")
+                        .navigationBarItems(leading: Button("Cancel") {
+                            isAddMode = false          // return from adding
+                        }, trailing: Button("Done") {
+                            isAddMode = false          // return
+                            //recipe.update(from: data)   // update values from edit
+                        })
+                }
             }
         }
-
     }
 }
 

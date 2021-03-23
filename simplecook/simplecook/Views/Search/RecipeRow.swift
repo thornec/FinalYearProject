@@ -9,16 +9,9 @@ import SwiftUI
 
 struct RecipeRow: View {
     var recipe: Recipe
-    
     var body: some View {
-        
         ZStack{
-            
-            //RoundedRectangle(cornerRadius:30)
-            
-            
             HStack {
-                
                 // image
                 SearchBarImage(recipe:recipe)
                 
@@ -32,8 +25,6 @@ struct RecipeRow: View {
                     Image(systemName: "star.fill")
                         .foregroundColor(.yellow)
                 }
-                
-                
             }
             .frame(width:330, height:120)
             .padding(.horizontal)                      // creates wide rectangle
@@ -44,16 +35,11 @@ struct RecipeRow: View {
             .shadow(radius:9)
             .padding()
         }
-        
-        
     }
-    
-
 }
 
 struct RecipeRow_Previews: PreviewProvider {
     static var recipes = ModelData().recipes
-    
     
     static var previews: some View {
         Group{

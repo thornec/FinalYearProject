@@ -26,7 +26,7 @@ struct simplecookApp: App {
     // returns scenes
     var body: some Scene {
         WindowGroup {
-            NavigationView{
+            //NavigationView{
                 // tab bar
                 TabView(selection: $selection){
                     // search page
@@ -49,11 +49,11 @@ struct simplecookApp: App {
                             Label("My Recipes", systemImage: "person.circle")
                         }
                     }
+                    .onAppear {
+                        data.load() // load data
+                    }
                 //}
-            }
-            .onAppear {
-                data.load() // load data
-            }
+            //}
         }
     }
 }

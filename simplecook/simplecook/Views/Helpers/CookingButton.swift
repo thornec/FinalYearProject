@@ -26,7 +26,6 @@ struct CookingButton: View {
                     .cornerRadius(20)                           // rounds corners
                     .shadow(radius:9)
                     .padding()
-                    //.border(Color.black)
                     .offset(y:-40)
             }
         }
