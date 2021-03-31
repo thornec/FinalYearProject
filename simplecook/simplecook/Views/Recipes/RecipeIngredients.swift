@@ -15,60 +15,98 @@ struct RecipeIngredients: View {
     @State var checked = false
     @State private var serving = 2
     @State private var count = 0;
-
+    @State private var servingsize = 2; // keep count of how many servings are being displayed
+    
+    // state variables for dictionary search
+    @State var isDictionary = false
+    @State private var word = ""
+    
     @EnvironmentObject var modelData: ModelData     // allows modelData to get its value automatically
     
     var body: some View {
         
-        VStack {
-            HStack {
-                VStack(alignment: .leading){
-                        // recipe ingredient stepper
-                        Stepper("\(serving)  servings", onIncrement: {
-                            serving += 1
-                            // increment all serving sizes
-                            for _ in recipe.servings {
-                                recipe.servings[count] = recipe.servings[count] * 2
-                                count+=1
-                            }
-                            count = 0   // reset count
-                            }, onDecrement: {
-                                serving -= 1
-                                // decrement each serving size
-                                for _ in recipe.servings {
-                                    recipe.servings[count] = recipe.servings[count] / 2
-                                    count+=1
-                                }
-                                count = 0   // reset count
-                            })
-                            .padding(10)
-                            
-                        // display ingredients
-                        ForEach(Array(zip(recipe.ingredients, recipe.servings)), id: \.0){ ingredient in
-                        // nav link to dictionary
-                        NavigationLink(destination:DictionaryView(word: "poached")){
-                            HStack{
-                                Text(ingredient.0)  // ingredients
-                                Spacer()
-                                let x : Int = ingredient.1  // convert int of serving into string to display
-                                let myString = String(x)
-                                Text(myString)  // servings
-                                }
-                            .padding()
+        //NavigationView {
+            VStack(alignment: .leading){
+                // title and price
+                HStack {
+                    Text("ingredients").font(.title).padding()
+                    Spacer()
+                    HStack{
+                        Image(systemName: "eurosign.circle")
+                        Text("2")
+                    }
+                    .font(.title)
+                    .padding()
+                }
+                VStack {
+                    HStack {
+                        VStack(alignment: .leading){
+                                // recipe ingredient stepper
+                                Stepper("\(serving)  servings", onIncrement: {
+                                    serving += 1
+                                    // increment all serving sizes
+                                    for _ in recipe.servings {
+                                        recipe.servings[count] = recipe.servings[count] + recipe.servings[count]
+                                        count+=1
+                                    }
+                                    count = 0   // reset count
+                                    servingsize+=1  // increase serving count
+                                    }, onDecrement: {
+                                        serving -= 1
+                                        // decrement each serving size
+                                        for _ in recipe.servings {
+                                            recipe.servings[count] = recipe.servings[count] - (recipe.servings[count]/3)
+                                            count+=1
+                                        }
+                                        count = 0   // reset count
+                                        servingsize=servingsize-1
+                                    })
+                                    .padding(10)
+                                    
+                            // display ingredients
+                            ForEach(Array(zip(recipe.ingredients, recipe.servings)), id: \.0){ ingredient in
+                                HStack{
+                                    // presented ingredient as button
+                                    Button(action: {
+                                        word = ingredient.0 // set dictionary search
+                                        isDictionary = true // set full screen as dictionary
+                                    }){
+                                        Text(ingredient.0).underline(color:Color/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                                    }
+                                    Spacer()
+                                    let x : Int = ingredient.1  // convert int of serving into string to display
+                                    let myString = String(x)
+                                    Text(myString)  // servings
+                                    }
+                                .padding()
                             }
                         }
+                    }
+                    // shopping list button
+                    AddShoppingListButton(recipe:recipe)
+                        .padding(.leading,280)
                 }
-            }
-            // shopping list button
-            AddShoppingListButton(recipe:recipe)
-                .padding(.leading,280)
+                .padding()
+                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                .background(Color.white)
+                .foregroundColor(.black)                    // sets color of text
+                .cornerRadius(20)                           // rounds corners
+                .shadow(radius:9)
+          //  }
         }
-        .padding()
-        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-        .background(Color.white)
-        .foregroundColor(.black)                    // sets color of text
-        .cornerRadius(20)                           // rounds corners
-        .shadow(radius:9)
+        .fullScreenCover(isPresented:$isDictionary){
+            NavigationView{
+                DictionaryView(word:$word)
+                    .navigationBarItems(leading:
+                        Button(action: {
+                            isDictionary = false
+                        }){
+                            Text("Back")
+                        }
+               )
+            }
+        }
+        
     }
 }
 
@@ -78,7 +116,7 @@ struct RecipeIngredients_Previews: PreviewProvider {
     static var previews: some View {
         Group{
             RecipeIngredients(
-                recipe : recipes[2]).environmentObject(ModelData())
+                recipe : recipes[0]).environmentObject(ModelData())
         }
     }
 }

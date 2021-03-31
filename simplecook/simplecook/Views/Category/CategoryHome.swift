@@ -12,7 +12,7 @@ struct CategoryHome: View {
     
   //  @Binding var recipe: MyRecipeModel
    // @State private var isEditMode = false
-   // @State private var data: MyRecipeModel.Data = MyRecipeModel.Data()
+    //@State private var data: MyRecipeModel.Data = MyRecipeModel.Data()
     
     @EnvironmentObject var modelData: ModelData
     @State private var selectedTabIndex = 0

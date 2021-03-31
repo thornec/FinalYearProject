@@ -14,6 +14,10 @@ struct RecipeDetails: View {
     @State var isSwipping = true
     @State var startPosition : CGPoint = .zero  // begining position of user drag
     
+    // state variables for dictionary search
+    @State var isDictionary = false
+    @State var word = ""
+    
     var recipe: Recipe
     
     // compute index of input recipe by comparing it to model data
@@ -31,11 +35,17 @@ struct RecipeDetails: View {
                     Image(recipe.imageName)
                         .edgesIgnoringSafeArea(.top)
                         .shadow(radius: 9)
-
+                
+                    
+                    
                     // recipe ingredients list
                     RecipeIngredients(recipe: recipe)
                         .frame(width:geometry.size.width)
                         .padding(20)
+                    
+                    
+
+                    
                     
                     VStack(alignment: .leading){
                         // built in recipe
@@ -52,6 +62,9 @@ struct RecipeDetails: View {
                     }
                     .padding(20)
                 }
+                
+                // recipe nutrition
+                NutritionView(query: "garlic")
             }
             .navigationTitle(recipe.name)
             .navigationBarItems(trailing: SaveButton(isSet: $modelData.recipes[recipeIndex].isSaved).font(.title))

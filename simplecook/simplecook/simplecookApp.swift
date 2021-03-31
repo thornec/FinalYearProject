@@ -36,7 +36,7 @@ struct simplecookApp: App {
                             Label("Search", systemImage: "magnifyingglass.circle")
                         }
                     // shopping list
-                    TabPage().environmentObject(ModelData())
+                    ShopList().environmentObject(ModelData())
                         .tabItem
                         {
                             Label("Shopping List", systemImage: "list.bullet")

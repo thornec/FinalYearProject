@@ -21,6 +21,8 @@ struct CategoryRow: View {
                 .padding(.leading, 15)
                 .padding(.top, 5)
             
+            Divider()
+            
             // display each recipe in category
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0){
@@ -31,9 +33,7 @@ struct CategoryRow: View {
                     }
                 }
             }
-            .frame(height:185)
-        }
-        
+        }        
     }
 }
 
