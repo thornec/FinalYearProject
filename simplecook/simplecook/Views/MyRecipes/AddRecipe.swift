@@ -66,7 +66,6 @@ struct AddRecipe: View {
 
                         
                     }) {
-                        AddRecipeButton()
                         Text("add recipe").font(.subheadline)
                     }
                     .offset(x:110)

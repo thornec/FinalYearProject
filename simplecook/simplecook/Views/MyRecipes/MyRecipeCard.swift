@@ -9,57 +9,54 @@ import SwiftUI
 
 struct MyRecipeCard: View {
     let recipe : MyRecipeModel
+    
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
+            // recipe image
+            Image(recipe.imageName)
+                .resizable()
+                .clipShape(RoundedRectangle(cornerRadius: 10.0))
+                .frame(width:255, height: 255)
+
             HStack {
-                Image(recipe.imageName)
-                    .resizable()
-                    .clipShape(RoundedRectangle(cornerRadius: 10.0))
-                    .frame(width:100, height:100)
-                
+                // recipe title
                 Text(recipe.title)
-                    .font(.title)
-                    .padding()
-                
-                Spacer()
-                
+                    .foregroundColor(.primary)
+                    .font(.system(size:16))
+                    .font(.caption)
+                                
                 // check if recipe is saved
-                if recipe.isSaved {
+                if !recipe.isSaved {
                     Image(systemName: "star.fill")
+                        .resizable()
+                        .frame(width:16,height:16)
                         .foregroundColor(.yellow)
+                        .padding(.trailing)
                 }
-            }
-            // labels
-            HStack {
-                // cost
+                                
+                // cook time
+                Label("\(recipe.cooktime)", systemImage: "clock")
+                    .padding()
+                    .font(.subheadline)
+                    .accessibilityElement(children: .ignore)                    // ignore label
+                    .accessibilityLabel(Text("Recipe Cook Time"))               // say recipe cook time
+                    .accessibilityValue(Text("\(recipe.cooktime) minutes"))     // say cook time
+                
+                /* cost
                 Label("\(recipe.cost)", systemImage: "dollarsign.square")
                     .accessibilityElement(children: .ignore)                    // ignore label
                     .accessibilityLabel(Text("Recipe Cost"))                    // say recipe cost
                     .accessibilityValue(Text("\(recipe.cost) euro"))            // say cost of recipe
-                    
-                Spacer()
-                    
-                // cook time
-                Label("\(recipe.cooktime)", systemImage: "clock")
-                    .padding(.trailing, 20)
-                    .accessibilityElement(children: .ignore)                    // ignore label
-                    .accessibilityLabel(Text("Recipe Cook Time"))               // say recipe cook time
-                    .accessibilityValue(Text("\(recipe.cooktime) minutes"))     // say cook time
-            }
-            
+                */
+            }            
         }
-        .padding(10)
-        .frame(width:380, height:150)
-        .background(Color.white)
-        .foregroundColor(.black)                    // sets color of text
-        .cornerRadius(20)                           // rounds corners
-        .shadow(radius:9)
     }
 }
 
 
 struct MyRecipeCard_Previews: PreviewProvider {
     static var recipe = MyRecipeModel.data[1]                 // test data
+    
     static var previews: some View {
         MyRecipeCard(recipe:recipe)
     }

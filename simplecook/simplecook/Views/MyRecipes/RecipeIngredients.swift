@@ -9,7 +9,6 @@ import SwiftUI
 import iPages
 
 struct RecipeIngredients: View {
-    @State var recipe: Recipe
     
     @State var trim : CGFloat = 0
     @State var checked = false
@@ -21,8 +20,11 @@ struct RecipeIngredients: View {
     @State var isDictionary = false
     @State private var word = ""
     
-    @EnvironmentObject var modelData: ModelData     // allows modelData to get its value automatically
-    
+    // recipe data
+    @Binding var recipe: MyRecipeModel
+    @State private var data: MyRecipeModel.Data = MyRecipeModel.Data()
+    var recipes : MyRecipeModel
+        
     var body: some View {
         
         //NavigationView {
@@ -64,7 +66,7 @@ struct RecipeIngredients: View {
                                     .padding(10)
                                     
                             // display ingredients
-                            ForEach(Array(zip(recipe.ingredients, recipe.servings)), id: \.0){ ingredient in
+                            ForEach(Array(zip(recipes.ingredients, recipes.servings)), id: \.0){ ingredient in
                                 HStack{
                                     // presented ingredient as button
                                     Button(action: {
@@ -83,8 +85,8 @@ struct RecipeIngredients: View {
                         }
                     }
                     // shopping list button
-                    AddShoppingListButton(recipe:recipe)
-                        .padding(.leading,280)
+                    //AddShoppingListButton(recipe:recipe)
+                    //    .padding(.leading,280)
                 }
                 .padding()
                 .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
@@ -116,7 +118,7 @@ struct RecipeIngredients_Previews: PreviewProvider {
     static var previews: some View {
         Group{
             RecipeIngredients(
-                recipe : recipes[0]).environmentObject(ModelData())
+                recipe: .constant(MyRecipeModel.data[1]), recipes: MyRecipeModel.data[1] )
         }
     }
 }

@@ -10,7 +10,9 @@ import iPages
 
 
 struct CookingMode: View {
-    var recipe : Recipe
+    
+    var recipe: MyRecipeModel
+    
     var body: some View {
         ScrollView{
             TabView {
@@ -46,6 +48,6 @@ struct CookingMode_Previews: PreviewProvider {
     static var recipes = ModelData().recipes
     
     static var previews: some View {
-        CookingMode(recipe : recipes[0])
+        CookingMode(recipe: (MyRecipeModel.data[1]))
     }
 }

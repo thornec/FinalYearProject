@@ -14,9 +14,6 @@ struct CookingButton: View {
     var body: some View {
         VStack{
             HStack{
-                // cooking image
-                //Image(systemName: "play")
-                // start cooking button
                 Text(string)
                     .padding(.horizontal)                      // creates wide rectangle
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)

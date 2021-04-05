@@ -21,18 +21,13 @@ struct ContentView: View {
         // tab bar
         TabView(selection: $selection){
             // search page
-            CategoryHome()
-                .tabItem
-                {
-                    Label("Search", systemImage: "magnifyingglass.circle")
-                }
+            //CategoryHome()
+              //  .tabItem
+                //{
+                  //  Label("Search", systemImage: "magnifyingglass.circle")
+                //}
             
             // shopping list page
-            TabPage()
-                .tabItem
-                {
-                    Label("Shopping List", systemImage: "list.bullet")
-                }
             
             // shopping list page
             //MyRecipeView(recipes: $myrecipes)

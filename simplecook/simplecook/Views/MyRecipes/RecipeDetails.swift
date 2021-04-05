@@ -9,42 +9,38 @@ import SwiftUI
 import iPages
 
 struct RecipeDetails: View {
-    @EnvironmentObject var modelData: ModelData
+    // state variables
     @State private var isCookingMode = false
-    @State var isSwipping = true
-    @State var startPosition : CGPoint = .zero  // begining position of user drag
-    
+    @State private var isEditMode = false
     // state variables for dictionary search
     @State var isDictionary = false
     @State var word = ""
     
-    var recipe: Recipe
+    // recipe data
+    @Binding var recipe: MyRecipeModel
     
     // compute index of input recipe by comparing it to model data
     var recipeIndex: Int {
-        modelData.recipes.firstIndex(where: {
-            $0.id == recipe.id
+    MyRecipeModel.data.firstIndex(where: {
+            $0.title == recipe.title
         })!
     }
-    
+        
     var body: some View {
         GeometryReader { geometry in
             NavigationView {
                 ScrollView  {
                     // import recipe image component
                     Image(recipe.imageName)
+                        .resizable()
+                        .frame(width:500, height:500)
                         .edgesIgnoringSafeArea(.top)
                         .shadow(radius: 9)
-                
-                    
-                    
+
                     // recipe ingredients list
-                    RecipeIngredients(recipe: recipe)
+                    RecipeIngredients(recipe: $recipe, recipes : MyRecipeModel.data[recipeIndex])
                         .frame(width:geometry.size.width)
                         .padding(20)
-                    
-                    
-
                     
                     
                     VStack(alignment: .leading){
@@ -57,7 +53,7 @@ struct RecipeDetails: View {
                             }
                         } else {
                             // custom recipe
-                            CustomMethod(recipe:recipe)
+                            //CustomMethod(recipe:recipe)
                         }
                     }
                     .padding(20)
@@ -66,8 +62,8 @@ struct RecipeDetails: View {
                 // recipe nutrition
                 NutritionView(query: "garlic")
             }
-            .navigationTitle(recipe.name)
-            .navigationBarItems(trailing: SaveButton(isSet: $modelData.recipes[recipeIndex].isSaved).font(.title))
+            .navigationTitle(recipe.title)
+            .navigationBarItems(trailing: SaveButton(isSet: $recipe.isSaved).font(.title))
             .fullScreenCover(isPresented:$isCookingMode){
                 // present cooking mode
                 NavigationView{
@@ -87,22 +83,11 @@ struct RecipeDetails: View {
 }
 
 struct RecipeDetails_Previews: PreviewProvider {
-    
-    static let modelData = ModelData()
-    
+        
     static var previews: some View {
         Group {
-            RecipeDetails(recipe: modelData.recipes[0])
-                .environmentObject(modelData)
+            RecipeDetails(recipe: .constant(MyRecipeModel.data[1]))
         }
     }
 }
-
-
-
-
-//}
-//.dotsBackgroundStyle(.prominent)
-//.frame(width: 380, height: 400, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-//.shadow(radius: 7)
 

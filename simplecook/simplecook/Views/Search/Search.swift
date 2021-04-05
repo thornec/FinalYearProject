@@ -43,7 +43,7 @@ struct Search: View {
                             .padding()
                                                     
                             ForEach(filteredSearch){ recipe in
-                                NavigationLink(destination: RecipeDetails(recipe: recipe)){
+                                NavigationLink(destination:Text("recipe details") /*RecipeDetails(recipe: recipe)*/){
                                     RecipeRow(recipe: recipe)
                                 
                                 }
