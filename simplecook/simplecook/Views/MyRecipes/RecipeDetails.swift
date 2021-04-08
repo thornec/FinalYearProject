@@ -19,12 +19,16 @@ struct RecipeDetails: View {
     // recipe data
     @Binding var recipe: MyRecipeModel
     
+    @Binding var recipes : [MyRecipeModel]
+
     // compute index of input recipe by comparing it to model data
+
     var recipeIndex: Int {
-    MyRecipeModel.data.firstIndex(where: {
+    recipes.firstIndex(where: {
             $0.title == recipe.title
         })!
     }
+ 
         
     var body: some View {
         GeometryReader { geometry in
@@ -38,7 +42,7 @@ struct RecipeDetails: View {
                         .shadow(radius: 9)
 
                     // recipe ingredients list
-                    RecipeIngredients(recipe: $recipe, recipes : MyRecipeModel.data[recipeIndex])
+                    RecipeIngredients(recipe: $recipe, recipes : recipes[recipeIndex], serving_sizes: recipe.servings)
                         .frame(width:geometry.size.width)
                         .padding(20)
                     
@@ -86,7 +90,7 @@ struct RecipeDetails_Previews: PreviewProvider {
         
     static var previews: some View {
         Group {
-            RecipeDetails(recipe: .constant(MyRecipeModel.data[1]))
+            RecipeDetails(recipe: .constant(MyRecipeModel.data[1]), recipes: .constant(MyRecipeModel.data))
         }
     }
 }

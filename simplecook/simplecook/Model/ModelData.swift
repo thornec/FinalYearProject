@@ -22,8 +22,12 @@ final class ModelData: ObservableObject {
         "garlic" : "Garlic is a plant in the Allium (onion) family. It is closely related to onions, shallots and leeks. Each segment of a garlic bulb is called a clove. There are about 10–20 cloves in a single bulb, give or take"
     ]
     
-    @Published var shoppinglist : [Recipe] = load("shoppinglistData.json")
+    let new = MyShoppingData(title:"poached eggs", category:"lunch", ingredients:["eggs"], servings:[2], imageName:"poachedeggs")
+    @Published var shoppinglist : [MyShoppingData] = [MyShoppingData(title:"poached eggs", category:"lunch", ingredients:["eggs"], servings:[2], imageName:"poachedeggs")]
 
+    
+    
+    
     @Published var myrecipes : [Recipe] = load("MyRecipesData.json")
 
     // load data from database into arrays

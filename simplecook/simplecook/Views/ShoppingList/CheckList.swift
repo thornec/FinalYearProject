@@ -9,7 +9,9 @@ import SwiftUI
 
 struct CheckList: View {
     var ingredients : [String]
-    var recipe : Recipe
+    var recipe : MyShoppingData
+    @Binding var shoppingData : [MyShoppingData]
+    
     var body: some View {
         VStack(alignment:.leading) {
             // recipe image
@@ -17,7 +19,7 @@ struct CheckList: View {
                 HStack {
                     ShoppingImage(recipe: recipe)
                         .padding()
-                    Text(recipe.name)
+                    Text(recipe.title)
                 }
             }
             Divider()
@@ -31,7 +33,7 @@ struct CheckList: View {
                     }
                 }
 
-               RemoveItem(recipe: recipe).padding(.leading,280)
+            RemoveItem(recipes: $shoppingData, recipe: recipe).padding(.leading,280)
         }
         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
         .background(Color.white)
@@ -44,10 +46,8 @@ struct CheckList: View {
 
 struct CheckList_Previews: PreviewProvider {
     
-    static var shoppinglist = ModelData().shoppinglist
-    
     static var previews: some View {
-        CheckList(ingredients : shoppinglist[0].ingredients, recipe: shoppinglist[0])
+        CheckList(ingredients : MyShoppingData.data[0].ingredients, recipe: MyShoppingData.data[0], shoppingData: .constant(MyShoppingData.data))
     }
 }
 

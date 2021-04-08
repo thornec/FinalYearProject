@@ -9,18 +9,17 @@ import SwiftUI
 
 struct RemoveItem: View {
     
-    @EnvironmentObject var modelData: ModelData     // allows modelData to get its value automatically
-    var recipe : Recipe
+    @Binding var recipes : [MyShoppingData]
+    var recipe : MyShoppingData
     
     var body: some View {
         
         // add to shopping list button
         Button(action: {
-            
             // find index of element to be removed
-            let index = findIndex(shoppinglist : modelData.shoppinglist, recipe_name: recipe.name)
+            let index = findIndex(shoppinglist : MyShoppingData.data, recipe_name: recipe.title)
             // remove item at index from list
-            modelData.shoppinglist.remove(at:index)
+            recipes.remove(at:index)
             
         }){
             Image(systemName: "trash")
@@ -33,36 +32,30 @@ struct RemoveItem: View {
                 .shadow(radius:9)
                 .padding()
         }
-
-            
     }
 }
 
 
 // used to find index of recipe item to be deleted
-func findIndex(shoppinglist : [Recipe], recipe_name : String) -> Int{
+func findIndex(shoppinglist : [MyShoppingData], recipe_name : String) -> Int{
     
     var count = 0
     
     // loop through list and find element equal to name
     for recipe in shoppinglist {
-        if(recipe.name == recipe_name){
+        if(recipe.title == recipe_name){
             return count
         }
         else {
             count+=1
         }
     }
-    
     return count
-    
 }
 
 struct RemoveItem_Previews: PreviewProvider {
     
-    static let recipe = ModelData().recipes[0]
-
     static var previews: some View {
-        RemoveItem(recipe : recipe).environmentObject(ModelData())
+        RemoveItem(recipes : .constant(MyShoppingData.data), recipe:MyShoppingData.data[0])
     }
 }

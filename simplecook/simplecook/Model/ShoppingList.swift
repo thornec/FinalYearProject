@@ -23,3 +23,5 @@ struct ShoppingList: Hashable, Codable, Identifiable {
         Image(imageName)    // load image from catalogue
     }
 }
+
+

@@ -99,8 +99,8 @@ struct CategoryHome: View {
     }
     
     var body: some View {
-        //NavigationView {
-            ScrollView {
+        NavigationView {
+            ScrollView(.vertical) {
                 VStack{
                     // search bar
                     SearchBar(text: $searchText, placeholder: "search by recipe or ingredients")
@@ -156,7 +156,7 @@ struct CategoryHome: View {
                     // if unactive call save
                     if phase == .inactive { saveAction() }
                 }
-           // }
+            }
         }
     }
 }

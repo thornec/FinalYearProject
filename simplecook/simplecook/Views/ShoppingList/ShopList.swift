@@ -11,12 +11,13 @@ import SwiftUI
 struct ShopList: View {
     @EnvironmentObject var modelData: ModelData     // allows modelData to get its value automatically
     @State private var isAddMode = false
-
+    @State var shoppinglist : [MyShoppingData]
+    
     var body: some View {
     NavigationView{
         VStack{
-            ForEach(modelData.shoppinglist, id:\.self){ item in
-                    ShoppingRow(recipe : item)
+            ForEach(shoppinglist, id:\.self){ item in
+                    ShoppingRow(recipe : item, shoppingData: $shoppinglist)
                 }
             Spacer()
             
@@ -35,7 +36,7 @@ struct ShopList: View {
             // present add mode using entire screen
             NavigationView {
                 Text("hello")
-                    .navigationTitle("Create a New Recipe")
+                    .navigationTitle("Add New Item")
                     .navigationBarItems(leading: Button("Cancel") {
                         isAddMode = false          // return from adding
                     }, trailing: Button("Done") {
@@ -50,8 +51,10 @@ struct ShopList: View {
 
 struct ShopList_Previews: PreviewProvider {
 
+    static var shoppinglist = ModelData().shoppinglist
+    
     static var previews: some View {
-        ShopList().environmentObject(ModelData())
+        ShopList(shoppinglist : shoppinglist).environmentObject(ModelData())
 
     }
 }

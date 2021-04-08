@@ -50,6 +50,8 @@
 		1BD5290225F68FDD00E724E5 /* AddRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD5290125F68FDD00E724E5 /* AddRecipe.swift */; };
 		1BD5290525F6917900E724E5 /* UploadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD5290425F6917900E724E5 /* UploadImage.swift */; };
 		1BD5290C25F6936500E724E5 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD5290B25F6936500E724E5 /* ImagePicker.swift */; };
+		1BE595D0261EE0550079473E /* MyShoppingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE595CF261EE0550079473E /* MyShoppingData.swift */; };
+		1BE595D3261EF25A0079473E /* EditShoppingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE595D2261EF25A0079473E /* EditShoppingList.swift */; };
 		1BEADF2D260CBEC7000EDAE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEADF2C260CBEC7000EDAE5 /* ViewController.swift */; };
 		1BEBDC4925FA346B00F43948 /* CustomMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEBDC4825FA346B00F43948 /* CustomMethod.swift */; };
 		1BF2880325E650CF005A992F /* ShoppingImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF2880225E650CF005A992F /* ShoppingImage.swift */; };
@@ -103,6 +105,8 @@
 		1BD5290125F68FDD00E724E5 /* AddRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipe.swift; sourceTree = "<group>"; };
 		1BD5290425F6917900E724E5 /* UploadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImage.swift; sourceTree = "<group>"; };
 		1BD5290B25F6936500E724E5 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		1BE595CF261EE0550079473E /* MyShoppingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShoppingData.swift; sourceTree = "<group>"; };
+		1BE595D2261EF25A0079473E /* EditShoppingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditShoppingList.swift; sourceTree = "<group>"; };
 		1BEADF2C260CBEC7000EDAE5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1BEBDC4825FA346B00F43948 /* CustomMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMethod.swift; sourceTree = "<group>"; };
 		1BF2880225E650CF005A992F /* ShoppingImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingImage.swift; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 				1BF2880225E650CF005A992F /* ShoppingImage.swift */,
 				1BF2880925E66E92005A992F /* CheckBox.swift */,
 				1B0F4F6225EF89CA00BE11E4 /* RemoveItem.swift */,
+				1BE595D2261EF25A0079473E /* EditShoppingList.swift */,
 			);
 			path = ShoppingList;
 			sourceTree = "<group>";
@@ -238,6 +243,7 @@
 				1B91494F25DD2E5C00B01F2B /* Recipe.swift */,
 				1B7BD0FA25DBEFD10019FDA9 /* ContentView.swift */,
 				1B39933C25E51E3700131E5D /* ShoppingList.swift */,
+				1BE595CF261EE0550079473E /* MyShoppingData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -393,6 +399,7 @@
 				1B74046225DEB49B00D37EDA /* CategoryHome.swift in Sources */,
 				1B5140952608B86D006A6495 /* MyRecipeData.swift in Sources */,
 				1BD5290525F6917900E724E5 /* UploadImage.swift in Sources */,
+				1BE595D3261EF25A0079473E /* EditShoppingList.swift in Sources */,
 				1B73F4B025DDA7F1008E450C /* SaveButton.swift in Sources */,
 				1BFABB4626148D7400554E4F /* NutritionView.swift in Sources */,
 				1B06F4032611F222003A9FFB /* NutritionRow.swift in Sources */,
@@ -400,6 +407,7 @@
 				1B91494625DD297300B01F2B /* RecipeRow.swift in Sources */,
 				1B7BD11225DD1CDB0019FDA9 /* ModelData.swift in Sources */,
 				1B06F4062611F62A003A9FFB /* NutritionList.swift in Sources */,
+				1BE595D0261EE0550079473E /* MyShoppingData.swift in Sources */,
 				1B508D5E25DD76F1004AC0DC /* RecipeDetails.swift in Sources */,
 				1B023CAB260899D8001ADBC8 /* EditRecipeView.swift in Sources */,
 				1B39934025E520BD00131E5D /* ShopList.swift in Sources */,

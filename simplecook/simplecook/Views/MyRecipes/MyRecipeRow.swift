@@ -9,12 +9,14 @@ import SwiftUI
 
 struct MyRecipeRow: View {
     
+    @State private var recipesData = MyRecipeModel.data
     @Binding var recipesBinding : [MyRecipeModel]   // list of recipes
+    
     var category : String           // category of list
     var recipes : [MyRecipeModel]
     
     var body: some View {
-        NavigationView {
+        //NavigationView {
             VStack(alignment: .leading){
                 // display category name
                 Text(category)
@@ -29,20 +31,21 @@ struct MyRecipeRow: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(alignment: .top, spacing: 30){
                         ForEach(recipes) { recipe in
-                            NavigationLink(destination: RecipeDetails(recipe: binding(for: recipe))){
+                            NavigationLink(destination: RecipeDetails(recipe: binding(for: recipe), recipes: $recipesBinding)){
                                 MyRecipeCard(recipe: recipe)
                             }
                         }
                         .padding()
                     }
                 }
-            }
+            //}
         }
     }
     
     // function to retrieve a binding for a recipe
     private func binding(for recipe: MyRecipeModel) -> Binding<MyRecipeModel> {
-        guard let recipeIndex = recipes.firstIndex(where: { $0.title == recipe.title }) else {
+        
+        guard let recipeIndex = recipesBinding.firstIndex(where: { $0.title == recipe.title }) else {
             fatalError("Can't find recipe")
         }
         return $recipesBinding[recipeIndex]    // return binding

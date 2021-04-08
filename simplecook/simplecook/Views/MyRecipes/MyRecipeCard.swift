@@ -26,7 +26,7 @@ struct MyRecipeCard: View {
                     .font(.caption)
                                 
                 // check if recipe is saved
-                if !recipe.isSaved {
+                if recipe.isSaved {
                     Image(systemName: "star.fill")
                         .resizable()
                         .frame(width:16,height:16)

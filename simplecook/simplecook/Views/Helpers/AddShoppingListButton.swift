@@ -14,7 +14,7 @@ struct AddShoppingListButton: View {
     
     var body: some View {
         Button(action: {
-            modelData.shoppinglist.append(recipe)
+            //modelData.shoppinglist.append(recipe)
         }){
             Image(systemName: "cart.badge.plus")
                 .font(.largeTitle)

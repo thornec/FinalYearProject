@@ -13,7 +13,8 @@ struct simplecookApp: App {
     @StateObject private var modelData = ModelData()    // json for shopping list
     @ObservedObject private var data = MyRecipeData()   // locally stored recipe data
     @State private var selection: Tab = .featured       // state of tab bar
-
+    @State var shoppinglist = ModelData().shoppinglist
+    
     // tab bar struct
     enum Tab {
         case featured
@@ -32,7 +33,7 @@ struct simplecookApp: App {
                     Label("Search", systemImage: "magnifyingglass.circle")
                 }
             // shopping list
-            ShopList().environmentObject(ModelData())
+                ShopList(shoppinglist: shoppinglist).environmentObject(ModelData())
                 .tabItem
                 {
                     Label("Shopping List", systemImage: "list.bullet")

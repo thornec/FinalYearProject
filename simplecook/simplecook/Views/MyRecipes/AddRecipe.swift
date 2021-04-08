@@ -62,9 +62,6 @@ struct AddRecipe: View {
                         // push new recipe to list
                         modelData.recipes.append(new)
                         
-                        
-
-                        
                     }) {
                         Text("add recipe").font(.subheadline)
                     }

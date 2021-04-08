@@ -24,6 +24,8 @@ struct RecipeIngredients: View {
     @Binding var recipe: MyRecipeModel
     @State private var data: MyRecipeModel.Data = MyRecipeModel.Data()
     var recipes : MyRecipeModel
+    
+    @State var serving_sizes : [Int]
         
     var body: some View {
         
@@ -47,8 +49,8 @@ struct RecipeIngredients: View {
                                 Stepper("\(serving)  servings", onIncrement: {
                                     serving += 1
                                     // increment all serving sizes
-                                    for _ in recipe.servings {
-                                        recipe.servings[count] = recipe.servings[count] + recipe.servings[count]
+                                    for _ in serving_sizes {
+                                        serving_sizes[count] = (recipe.servings[count])/2 + serving_sizes[count]
                                         count+=1
                                     }
                                     count = 0   // reset count
@@ -56,8 +58,8 @@ struct RecipeIngredients: View {
                                     }, onDecrement: {
                                         serving -= 1
                                         // decrement each serving size
-                                        for _ in recipe.servings {
-                                            recipe.servings[count] = recipe.servings[count] - (recipe.servings[count]/3)
+                                        for _ in serving_sizes {
+                                            serving_sizes[count] = serving_sizes[count] - (recipe.servings[count]/2)
                                             count+=1
                                         }
                                         count = 0   // reset count
@@ -66,7 +68,7 @@ struct RecipeIngredients: View {
                                     .padding(10)
                                     
                             // display ingredients
-                            ForEach(Array(zip(recipes.ingredients, recipes.servings)), id: \.0){ ingredient in
+                            ForEach(Array(zip(recipes.ingredients, serving_sizes)), id: \.0){ ingredient in
                                 HStack{
                                     // presented ingredient as button
                                     Button(action: {
@@ -118,7 +120,7 @@ struct RecipeIngredients_Previews: PreviewProvider {
     static var previews: some View {
         Group{
             RecipeIngredients(
-                recipe: .constant(MyRecipeModel.data[1]), recipes: MyRecipeModel.data[1] )
+                recipe: .constant(MyRecipeModel.data[1]), recipes: MyRecipeModel.data[1], serving_sizes : (MyRecipeModel.data[1].servings))
         }
     }
 }

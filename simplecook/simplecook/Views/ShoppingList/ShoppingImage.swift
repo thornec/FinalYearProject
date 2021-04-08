@@ -9,13 +9,13 @@ import SwiftUI
 
 struct ShoppingImage: View {
     
-    var recipe : Recipe
+    var recipe : MyShoppingData
 
     var body: some View {
         Image(recipe.imageName)
             .resizable()
             .scaledToFit()
-            .frame(width:50, height:50)
+            .frame(width:70, height:70)
             .clipShape(Circle())
             .overlay(Circle().stroke(Color.white, lineWidth: 1))
     }
@@ -23,10 +23,7 @@ struct ShoppingImage: View {
 
 struct ShoppingImage_Previews: PreviewProvider {
     
-    static var shoppinglist = ModelData().shoppinglist
-
-    
     static var previews: some View {
-        ShoppingImage(recipe: shoppinglist[0])
+        ShoppingImage(recipe: MyShoppingData.data[0])
     }
 }
