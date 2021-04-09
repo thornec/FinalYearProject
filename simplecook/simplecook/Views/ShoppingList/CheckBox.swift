@@ -28,7 +28,7 @@ struct CheckBox: View {
 
                     if checked {
                         Image(systemName: "checkmark")
-                            .foregroundColor(Color.white)
+                            .foregroundColor(Color.black)
                     }
                 }
                 

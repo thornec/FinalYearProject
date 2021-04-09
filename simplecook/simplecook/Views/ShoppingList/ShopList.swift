@@ -13,6 +13,10 @@ struct ShopList: View {
     @State private var isAddMode = false
     @State var shoppinglist : [MyShoppingData]
     
+    // placeholders for new data
+    @State var newIngredient = ""
+    @State var newQuantity = 0
+    
     var body: some View {
     NavigationView{
         VStack{
@@ -32,16 +36,19 @@ struct ShopList: View {
                 .font(.title)
         })
         // cover screen in add recipe mode
-        .fullScreenCover(isPresented: $isAddMode){
+        .sheet(isPresented: $isAddMode){
             // present add mode using entire screen
             NavigationView {
                 Text("hello")
+                //EditShoppingList(newIngredient: $newIngredient, quantity: $newQuantity)
                     .navigationTitle("Add New Item")
                     .navigationBarItems(leading: Button("Cancel") {
                         isAddMode = false          // return from adding
-                    }, trailing: Button("Done") {
-                        isAddMode = false          // return
-                        //recipe.update(from: data)   // update values from edit
+                    }, trailing: Button("Add") {
+                        // add new item
+                        //let new = MyShoppingData(title: "TEST", category: "TEST", ingredients: [newIngredient], servings: [newQuantity], imageName: "TEST")
+                        //shoppinglist.append(new) // push recipe onto list
+                        //isAddMode = false         // exit add mode
                     })
                 }
             }
