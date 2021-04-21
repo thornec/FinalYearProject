@@ -16,12 +16,15 @@ struct RecipeIngredients: View {
     @State private var count = 0;
     @State private var servingsize = 2; // keep count of how many servings are being displayed
     
+    @State var isNutrition = false
+
     // state variables for dictionary search
     @State var isDictionary = false
     @State private var word = ""
     
     // recipe data
     @Binding var recipe: MyRecipeModel
+    @Binding var shoppinglist : [MyShoppingData]
     @State private var data: MyRecipeModel.Data = MyRecipeModel.Data()
     var recipes : MyRecipeModel
     
@@ -86,9 +89,30 @@ struct RecipeIngredients: View {
                             }
                         }
                     }
-                    // shopping list button
-                    //AddShoppingListButton(recipe:recipe)
-                    //    .padding(.leading,280)
+                    HStack{
+                        // shopping list button
+                        VStack {
+                            AddShoppingListButton(shoppinglist:$shoppinglist, title:recipe.title, category: recipe.categoryName, ingredients:recipe.ingredients, servings:recipe.servings, imageName:recipe.imageName)
+                            Text("add to shop list").font(.system(size:15.0)).foregroundColor(.blue)
+                        }
+                            
+                        Spacer()
+                        
+                        Button(action: {
+                           isNutrition = true
+                        }){
+                            VStack{
+                                Image(systemName: "doc.text.magnifyingglass")
+                                    .font(.largeTitle)
+                                    .padding()
+                                    .background(Color.white)
+                                    .cornerRadius(20)                           // rounds corners
+                                    .shadow(radius:9)
+                                Text("nutrition").font(.system(size:15.0)).foregroundColor(.blue)
+                            }
+                        }
+                        
+                    }.padding()
                 }
                 .padding()
                 .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
@@ -98,6 +122,7 @@ struct RecipeIngredients: View {
                 .shadow(radius:9)
           //  }
         }
+            /*
         .fullScreenCover(isPresented:$isDictionary){
             NavigationView{
                 DictionaryView(word:$word)
@@ -110,6 +135,35 @@ struct RecipeIngredients: View {
                )
             }
         }
+ */
+        .background(EmptyView().sheet(isPresented: $isDictionary) {
+                // present edit mode using entire screen
+            NavigationView{
+                DictionaryView(word:$word)
+                    .navigationBarItems(leading:
+                        Button(action: {
+                            isDictionary = false
+                        }){
+                            Text("Back")
+                        }
+                    )
+                }
+            .navigationTitle("dictionary")
+            }
+            .background(EmptyView().sheet(isPresented:$isNutrition){
+                // present cooking mode
+                NavigationView{
+                    NutritionPage(ingredients:["garlic","tomatoes","basil","pasta"])
+                        .navigationBarItems(leading:
+                            Button(action: {
+                                isNutrition = false
+                            }){
+                                Text("Back")
+                            }
+                        .navigationTitle("nutritional information")
+                    )
+                }
+            }))
         
     }
 }
@@ -120,7 +174,7 @@ struct RecipeIngredients_Previews: PreviewProvider {
     static var previews: some View {
         Group{
             RecipeIngredients(
-                recipe: .constant(MyRecipeModel.data[1]), recipes: MyRecipeModel.data[1], serving_sizes : (MyRecipeModel.data[1].servings))
+                recipe: .constant(MyRecipeModel.data[2]), shoppinglist:.constant(ModelData().shoppinglist), recipes: MyRecipeModel.data[1], serving_sizes : (MyRecipeModel.data[1].servings))
         }
     }
 }

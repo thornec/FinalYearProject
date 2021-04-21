@@ -19,11 +19,16 @@ struct NutritionList: View {
                            "Saturated Fats",
                            "Cholestrol"
     ]
-    
+        
     var values : [String]
-    
+    var query : String
+
     var body: some View {
         VStack(alignment: .leading) {
+            Text(query)
+                .padding()
+                .font(.headline)
+                .frame(maxWidth: .infinity, alignment: .leading)
             // list of nutritional info
             ScrollView(.horizontal, showsIndicators: true){
                 HStack{
@@ -44,6 +49,6 @@ struct NutritionList_Previews: PreviewProvider {
         // test data
         let  values_test = [ "14.0","12.1","4.1","15.9","14.0","24.0","54.0","14.0","14.0"]
         
-        NutritionList(values: values_test)
+        NutritionList(values: values_test,query:"garlic")
     }
 }

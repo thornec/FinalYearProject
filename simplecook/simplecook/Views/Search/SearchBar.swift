@@ -10,11 +10,9 @@ import SwiftUI
 struct SearchBar: UIViewRepresentable {
     
     @Binding var text : String      // variable for search query
-    var placeholder : String
+    var placeholder : String        // variable for placeholder text
 
-    
     class Coordinator: NSObject, UISearchBarDelegate {
-        
         @Binding var text : String      // variable for search query
         
         init(text: Binding<String>) {

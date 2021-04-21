@@ -27,13 +27,13 @@ struct simplecookApp: App {
             // tab bar
             TabView(selection: $selection){
             // search page
-            CategoryHome(recipes: $data.myrecipes){ data.save()}.environmentObject(ModelData())
+                CategoryHome(recipes: $data.myrecipes, shoppinglist: $shoppinglist){ data.save()}.environmentObject(ModelData())
                 .tabItem
                 {
                     Label("Search", systemImage: "magnifyingglass.circle")
                 }
             // shopping list
-                ShopList(shoppinglist: shoppinglist).environmentObject(ModelData())
+                ShopList(shoppinglist: $shoppinglist).environmentObject(ModelData())
                 .tabItem
                 {
                     Label("Shopping List", systemImage: "list.bullet")

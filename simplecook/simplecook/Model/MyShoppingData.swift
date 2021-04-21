@@ -35,7 +35,8 @@ extension MyShoppingData {
     static var data: [MyShoppingData] {
         [
             // poached eggs
-            MyShoppingData(title:"poached eggs", category:"lunch", ingredients:["eggs"], servings:[2], imageName:"poachedeggs")
+            MyShoppingData(title:"poached eggs", category:"lunch", ingredients:["eggs"], servings:[2], imageName:"poachedeggs"),
+            MyShoppingData(title:"poached eggs test", category:"lunch", ingredients:["eggs"], servings:[2], imageName:"poachedeggs")
         ]
     }
 }

@@ -10,24 +10,65 @@ import SwiftUI
 struct EditShoppingList: View {
     
     @Binding var newIngredient : String // hold new ingredient entered
-    @Binding var quantity : Int // hold new ingredient entered
-    @State var ingredientdisplay = ""
-    
-    
+
+    @State var quantity = 0
+    @State var ingredient = ""
+    @State var selected = 0
+    @State var selectedRecipe = 0
+
+    @State var selectedMeasurement = ""
+    @Binding var AddMode : Bool
+    @Binding var shoppinglist : [MyShoppingData]
+
     var body: some View {
-        List {
+        Form {
             // recipe title
             Section(header: Text("")) {
-            HStack{
-                TextField("enter the ingredient", text: $ingredientdisplay)
-                    
-                Stepper("\(quantity)", onIncrement: {
-                    quantity+=1
-                }, onDecrement: {
-                    quantity-=1
-                }).padding()
-                    
+                VStack {
+                    HStack{
+                        // ingredient name
+                        TextField("enter the ingredient", text: $ingredient)
+                        // quantity
+                        Stepper("\(quantity)", onIncrement: {
+                            quantity+=1
+                            newIngredient = "\(ingredient)\n\(quantity)\n\(selectedMeasurement)"
+                        }, onDecrement: {
+                            if(quantity==1){}
+                            else {
+                                quantity-=1
+                            }
+                            newIngredient = "\(ingredient)\n\(quantity)\n\(selectedMeasurement)"
+                        }).padding()
+                    }
                 }
+                // selecting measurement for item
+                Picker(selection: $selected, label: Text(""), content: {
+                                Text("Grams").tag(0)
+                                Text("Kilos").tag(1)
+                                Text("Milimeters").tag(2)
+                                Text("Litres").tag(3)
+                            }).pickerStyle(SegmentedPickerStyle())
+                
+            }
+            
+            Picker("Recipe", selection: $selectedRecipe){
+                ForEach(shoppinglist, id: \.self){ item in
+                    Text(item.title)
+                }
+            }.pickerStyle(SegmentedPickerStyle())
+            
+            Button(action: {
+                if(selected == 0){ self.selectedMeasurement = "Grams" }
+                if(selected == 1){ self.selectedMeasurement = "Kilos" }
+                if(selected == 2){ self.selectedMeasurement = "Milimeters" }
+                if(selected == 3){ self.selectedMeasurement = "Litres" }
+                // set bindings
+                //newIngredient = "\(ingredient)\n\(quantity)\n\(selectedMeasurement)"
+                newIngredient = "\(ingredient)"
+                shoppinglist[selectedRecipe].ingredients.append(newIngredient)   // add new ingredient to list
+                AddMode = false
+            }){
+                Text("Add").frame(maxWidth: .infinity, alignment:.center)
             }
         }
         .listStyle(InsetGroupedListStyle())
@@ -35,7 +76,9 @@ struct EditShoppingList: View {
 }
 
 struct EditShoppingList_Previews: PreviewProvider {
+    static var shoppinglist = ModelData().shoppinglist
+
     static var previews: some View {
-        EditShoppingList(newIngredient:.constant(""), quantity:.constant(0))
+        EditShoppingList(newIngredient:.constant(""), AddMode: .constant(true), shoppinglist : .constant(shoppinglist)).environmentObject(ModelData())
     }
 }

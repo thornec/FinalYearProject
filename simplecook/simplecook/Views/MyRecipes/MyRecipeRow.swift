@@ -9,36 +9,35 @@ import SwiftUI
 
 struct MyRecipeRow: View {
     
-    @State private var recipesData = MyRecipeModel.data
-    @Binding var recipesBinding : [MyRecipeModel]   // list of recipes
-    
+    @State private var recipesData = MyRecipeModel.data     // recipe data
+    @Binding var recipesBinding : [MyRecipeModel]           // list of recipes
+    @Binding var shoppinglist : [MyShoppingData]            // shopping list data
+
     var category : String           // category of list
-    var recipes : [MyRecipeModel]
+    var recipes : [MyRecipeModel]   // recipes
     
     var body: some View {
-        //NavigationView {
-            VStack(alignment: .leading){
-                // display category name
-                Text(category)
-                    .font(.system(size:25))
-                    .font(.headline)
-                    .padding(.leading, 15)
-                    .padding(.top, 5)
+        VStack(alignment: .leading){
+            // display category name
+            Text(category)
+                .font(.system(size:25))
+                .font(.headline)
+                .padding(.leading, 15)
+                .padding(.top, 5)
                 
-                Divider()
+            Divider()
                 
-                // display each recipe in category
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(alignment: .top, spacing: 30){
-                        ForEach(recipes) { recipe in
-                            NavigationLink(destination: RecipeDetails(recipe: binding(for: recipe), recipes: $recipesBinding)){
-                                MyRecipeCard(recipe: recipe)
-                            }
+            // display each recipe in category
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(alignment: .top, spacing: 30){
+                    ForEach(recipes) { recipe in
+                        NavigationLink(destination: RecipeDetails(recipe: binding(for: recipe), recipes: $recipesBinding, shoppinglist:$shoppinglist)){
+                            MyRecipeCard(recipe: recipe)
                         }
-                        .padding()
                     }
+                    .padding()
                 }
-            //}
+            }
         }
     }
     
@@ -55,6 +54,6 @@ struct MyRecipeRow: View {
 struct MyRecipeRow_Previews: PreviewProvider {
     
     static var previews: some View {
-        MyRecipeRow(recipesBinding: .constant(MyRecipeModel.data), category:"Breakfast", recipes: MyRecipeModel.data)
+        MyRecipeRow(recipesBinding: .constant(MyRecipeModel.data), shoppinglist:.constant(ModelData().shoppinglist), category:"Breakfast", recipes: MyRecipeModel.data)
     }
 }

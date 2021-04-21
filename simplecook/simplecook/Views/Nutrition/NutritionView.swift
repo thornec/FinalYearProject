@@ -12,21 +12,25 @@ struct NutritionView: View {
         var query : String
         
         var body: some View {
-            List(response) { item in
-                // extract data values and sum
-                let values = sumData(response : response[0])
-                let display = extractData(item: values)
-                
-                // display data values
-                NutritionList(values:display)
-                
-                }.onAppear {
-                    API().loadData(query:query){ (data) in
-                    response = [data]
+            VStack {
+                List(response) { item in
+                    // extract data values and sum
+                    let values = sumData(response : response[0])
+                    let display = extractData(item: values)
+                    
+                    // display data values
+                    NutritionList(values:display, query:query)
+                    
+                    }
+                    .onAppear {
+                        API().loadData(query:query){ (data) in
+                        response = [data]
+                }
             }
         }
     }
-        func sumData(response : Response) -> Item {
+    
+    func sumData(response : Response) -> Item {
             let count = response.items.count
             var counter = response.items[0]
             
@@ -37,7 +41,7 @@ struct NutritionView: View {
             return counter
         }
 
-        func extractData(item: Item) -> [String]{
+    func extractData(item: Item) -> [String]{
                     
             let data = [  String(item.proteinG),
                           String(item.carbohydratesTotalG),

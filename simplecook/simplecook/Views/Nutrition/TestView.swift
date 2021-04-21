@@ -17,11 +17,11 @@ struct Response: Codable, Identifiable {
 // MARK: - Item
 struct Item: Codable {
     
-    var sugarG, fiberG, servingSizeG, sodiumMg: Int
+    var sugarG, fiberG, servingSizeG, sodiumMg: Double
     var name: String
-    var potassiumMg, fatSaturatedG: Int
+    var potassiumMg, fatSaturatedG: Double
     var fatTotalG, calories: Double
-    var cholesterolMg: Int
+    var cholesterolMg: Double
     var proteinG, carbohydratesTotalG: Double
 
     enum CodingKeys: String, CodingKey {
@@ -44,7 +44,7 @@ class API {
     // load api data
     func loadData(query: String, completion: @escaping (Response) -> ()){
             let myurl = URL(string: "https://api.calorieninjas.com/v1/nutrition?query=" + query)
-
+            print(query)
             if let unwrappedURL = myurl {
                 var request = URLRequest(url: unwrappedURL)
                 request.addValue("LRooJU3YQJPQMqVaaQjbHQ==xbZoAPJcBDmrAacW", forHTTPHeaderField: "X-Api-Key")

@@ -14,3 +14,4 @@ struct Dict: Hashable, Codable, Identifiable {
     var word : String
     var definition : String
 }
+

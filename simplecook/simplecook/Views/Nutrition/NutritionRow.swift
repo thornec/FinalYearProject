@@ -23,7 +23,7 @@ struct NutritionRow: View {
                 .padding()
 
         }
-        .frame(width:80,height:80)
+        .frame(width:90,height:80)
         .padding()
         .background(Color.white)
         .cornerRadius(20)                           // rounds corners

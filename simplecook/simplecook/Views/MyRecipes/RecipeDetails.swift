@@ -12,15 +12,18 @@ struct RecipeDetails: View {
     // state variables
     @State private var isCookingMode = false
     @State private var isEditMode = false
+    @State private var isNutritionMode = false
+
     // state variables for dictionary search
     @State var isDictionary = false
     @State var word = ""
     
     // recipe data
     @Binding var recipe: MyRecipeModel
-    
+    @State private var data: MyRecipeModel.Data = MyRecipeModel.Data()
     @Binding var recipes : [MyRecipeModel]
-
+    @Binding var shoppinglist : [MyShoppingData]
+    
     // compute index of input recipe by comparing it to model data
 
     var recipeIndex: Int {
@@ -42,7 +45,7 @@ struct RecipeDetails: View {
                         .shadow(radius: 9)
 
                     // recipe ingredients list
-                    RecipeIngredients(recipe: $recipe, recipes : recipes[recipeIndex], serving_sizes: recipe.servings)
+                    RecipeIngredients(recipe: $recipe, shoppinglist:$shoppinglist, recipes : recipes[recipeIndex], serving_sizes: recipe.servings)
                         .frame(width:geometry.size.width)
                         .padding(20)
                     
@@ -61,14 +64,34 @@ struct RecipeDetails: View {
                         }
                     }
                     .padding(20)
+                    
                 }
                 
-                // recipe nutrition
-                NutritionView(query: "garlic")
+                
             }
             .navigationTitle(recipe.title)
-            .navigationBarItems(trailing: SaveButton(isSet: $recipe.isSaved).font(.title))
-            .fullScreenCover(isPresented:$isCookingMode){
+            .navigationBarItems(
+                leading: SaveButton(isSet: $recipe.isSaved).font(.title).padding(10),
+                trailing: Button("Edit"){
+                    data = recipe.data
+                    isEditMode = true
+                    
+                }
+            )
+            .background(EmptyView().sheet(isPresented: $isEditMode) {
+                // present edit mode using entire screen
+                NavigationView {
+                    EditRecipeView(recipeData: $data)
+                        .navigationTitle(recipe.title)
+                        .navigationBarItems(leading: Button("Cancel") {
+                            isEditMode = false          // return from editing
+                        }, trailing: Button("Done") {
+                            isEditMode = false          // return
+                            recipe.update(from: data)   // update values from edit
+                    })
+                }
+            }
+            .background(EmptyView().sheet(isPresented:$isCookingMode){
                 // present cooking mode
                 NavigationView{
                     CookingMode(recipe:recipe)
@@ -80,7 +103,7 @@ struct RecipeDetails: View {
                             }
                     )
                 }
-            }
+            }))
         }
         //.navigationBarTitleDisplayMode(.inline)
     }
@@ -90,7 +113,7 @@ struct RecipeDetails_Previews: PreviewProvider {
         
     static var previews: some View {
         Group {
-            RecipeDetails(recipe: .constant(MyRecipeModel.data[1]), recipes: .constant(MyRecipeModel.data))
+            RecipeDetails(recipe: .constant(MyRecipeModel.data[1]), recipes: .constant(MyRecipeModel.data), shoppinglist: .constant(MyShoppingData.data))
         }
     }
 }

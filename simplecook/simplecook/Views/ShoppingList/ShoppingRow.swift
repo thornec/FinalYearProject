@@ -17,6 +17,7 @@ struct ShoppingRow: View {
             CheckList(ingredients : recipe.ingredients, recipe: recipe, shoppingData: $shoppingData)
         }
         .frame(width: 370, height: 470)
+        .padding()
     }
 }
 

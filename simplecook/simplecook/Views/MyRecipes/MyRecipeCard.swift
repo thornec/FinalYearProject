@@ -41,13 +41,7 @@ struct MyRecipeCard: View {
                     .accessibilityElement(children: .ignore)                    // ignore label
                     .accessibilityLabel(Text("Recipe Cook Time"))               // say recipe cook time
                     .accessibilityValue(Text("\(recipe.cooktime) minutes"))     // say cook time
-                
-                /* cost
-                Label("\(recipe.cost)", systemImage: "dollarsign.square")
-                    .accessibilityElement(children: .ignore)                    // ignore label
-                    .accessibilityLabel(Text("Recipe Cost"))                    // say recipe cost
-                    .accessibilityValue(Text("\(recipe.cost) euro"))            // say cost of recipe
-                */
+
             }            
         }
     }

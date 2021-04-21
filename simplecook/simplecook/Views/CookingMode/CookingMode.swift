@@ -20,18 +20,32 @@ struct CookingMode: View {
                     VStack {
                         CookingModeImage(image:step.1)
                             .edgesIgnoringSafeArea(.top)
+                        
                         Text(step.0)
                             .padding(50)
                             .font(.title)
-                        Image(systemName: "mic")
-                            .resizable()
-                            .padding()
-                            .frame(width:75, height:100)
-                            .background(Color.white)
-                            .foregroundColor(.black)                    // sets color of text
-                            .cornerRadius(20)                           // rounds corners
-                            .shadow(radius:9)
+                    
+                        HStack{
+                            Image(systemName: "mic.circle")
+                                .resizable()
+                                .frame(width:100, height:100)
+                                .padding(.leading)
+                                .offset(x:-60, y:-20)
+                                //.background(Color.white)
+                                //.foregroundColor(.black)                    // sets color of text
+                                //.cornerRadius(20)                           // rounds corners
+                                //.shadow(radius:9)
+                            
+                            TimerView()
+                            
+                            var timer_val = isTimerNeeded(sentence:step.0)
+                            if(timer_val != 0){
+                                TimerView()
+                            }
+                        }.padding()
+            
                         Spacer()
+                    
                     }
                 }
             }
@@ -41,6 +55,22 @@ struct CookingMode: View {
         }
         .edgesIgnoringSafeArea(.top)
     }
+}
+
+// extract time from sentences
+func isTimerNeeded(sentence : String) -> Int {
+    var ret = 0 // return value
+    let word_array = sentence.components(separatedBy: " ")
+    
+    // loop through words in instruction
+    for word in word_array {
+        // check if word is number
+        if(Int(word) != nil){
+            ret = Int(word)!  // set return value equal to number
+        }
+    }
+    
+    return ret
 }
 
 struct CookingMode_Previews: PreviewProvider {
