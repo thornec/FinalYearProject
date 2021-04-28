@@ -7,6 +7,7 @@
 import Foundation
 import SwiftUI
 
+// structure for test recipes, same as myrecipemodel
 struct Recipe: Hashable, Codable, Identifiable {
     var id: Int
     var name: String

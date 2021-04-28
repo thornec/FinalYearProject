@@ -7,10 +7,9 @@
 
 import SwiftUI
 
+// recipe save button view
 struct SaveButton: View {
-    
     @Binding var isSet: Bool    // indicates button current state
-    
     var body: some View {
         // button which performs relevant action depending on set of toggle
         Button(action: {

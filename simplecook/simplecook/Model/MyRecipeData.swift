@@ -37,7 +37,7 @@ class MyRecipeData: ObservableObject {
         // request global que with background thread service
         DispatchQueue.global(qos: .background).async { [weak self] in
             // asynchronously executing block
-            guard var data = try? Data(contentsOf: Self.fileURL) else {      // load contents of file into constant 'data'
+            guard let data = try? Data(contentsOf: Self.fileURL) else {      // load contents of file into constant 'data'
             //#if DEBUG
             // load sample recipes
             DispatchQueue.main.async {

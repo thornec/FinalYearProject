@@ -7,18 +7,18 @@
 
 import SwiftUI
 
+// view for editing shopping list items
 struct EditShoppingList: View {
-    
-    @Binding var newIngredient : String // hold new ingredient entered
-
+    @Binding var newIngredient : String             // hold new ingredient entered
+    // details to be entered by user
     @State var quantity = 0
     @State var ingredient = ""
     @State var selected = 0
     @State var selectedRecipe = 0
-
     @State var selectedMeasurement = ""
-    @Binding var AddMode : Bool
-    @Binding var shoppinglist : [MyShoppingData]
+    
+    @Binding var AddMode : Bool                     // is in add mode?
+    @Binding var shoppinglist : [MyShoppingData]    // shopping data
 
     var body: some View {
         Form {
@@ -48,9 +48,8 @@ struct EditShoppingList: View {
                                 Text("Milimeters").tag(2)
                                 Text("Litres").tag(3)
                             }).pickerStyle(SegmentedPickerStyle())
-                
             }
-            
+            // measurement picker
             Picker("Recipe", selection: $selectedRecipe){
                 ForEach(shoppinglist, id: \.self){ item in
                     Text(item.title)

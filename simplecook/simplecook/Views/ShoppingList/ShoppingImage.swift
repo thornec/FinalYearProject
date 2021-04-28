@@ -7,10 +7,9 @@
 
 import SwiftUI
 
+// view for shopping list item image
 struct ShoppingImage: View {
-    
     var recipe : MyShoppingData
-
     var body: some View {
         Image(recipe.imageName)
             .resizable()

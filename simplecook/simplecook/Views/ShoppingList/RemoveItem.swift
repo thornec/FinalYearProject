@@ -7,13 +7,11 @@
 
 import SwiftUI
 
+// view for removing an item from the shopping list
 struct RemoveItem: View {
-    
     @Binding var recipes : [MyShoppingData]
     var recipe : MyShoppingData
-    
     var body: some View {
-        
         // add to shopping list button
         Button(action: {
             // find index of element to be removed

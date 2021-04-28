@@ -10,10 +10,6 @@ import SwiftUI
 // app entry point
 @main
 struct simplecookApp: App {
-    @StateObject private var modelData = ModelData()    // json for shopping list
-    @ObservedObject private var data = MyRecipeData()   // locally stored recipe data
-    @State private var selection: Tab = .featured       // state of tab bar
-    @State var shoppinglist = ModelData().shoppinglist
     
     // tab bar struct
     enum Tab {
@@ -21,18 +17,24 @@ struct simplecookApp: App {
         case list
     }
     
+    // State Variables
+    @ObservedObject private var data = MyRecipeData()   // locally stored recipe data
+    @StateObject private var modelData = ModelData()    // model data for dictionary
+    @State var shoppinglist = ModelData().shoppinglist  // data for shopping list
+    @State private var selection: Tab = .featured       // state of tab bar
+    
     // returns scenes
     var body: some Scene {
         WindowGroup {
             // tab bar
             TabView(selection: $selection){
-            // search page
-                CategoryHome(recipes: $data.myrecipes, shoppinglist: $shoppinglist){ data.save()}.environmentObject(ModelData())
+                // search page
+                CategoryHome(shoppinglist: $shoppinglist, recipes: $data.myrecipes){ data.save()}.environmentObject(ModelData())
                 .tabItem
                 {
                     Label("Search", systemImage: "magnifyingglass.circle")
                 }
-            // shopping list
+                // shopping list
                 ShopList(shoppinglist: $shoppinglist).environmentObject(ModelData())
                 .tabItem
                 {
@@ -40,7 +42,7 @@ struct simplecookApp: App {
                 }
             }
             .onAppear {
-               data.load() // load data
+               data.load() // load data from phone storage
             }
 
         }

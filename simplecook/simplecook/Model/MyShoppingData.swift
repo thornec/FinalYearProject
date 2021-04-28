@@ -8,13 +8,13 @@
 import Foundation
 import SwiftUI
 
+// shopping list object structure
 struct MyShoppingData: Codable, Identifiable, Hashable {
     var id: UUID
     var title: String
     var category: String
     var ingredients: [String]
     var servings : [Int]
-    // read in image
     var imageName: String
     
     // initalizer
@@ -36,7 +36,6 @@ extension MyShoppingData {
         [
             // poached eggs
             MyShoppingData(title:"poached eggs", category:"lunch", ingredients:["eggs"], servings:[2], imageName:"poachedeggs"),
-            MyShoppingData(title:"poached eggs test", category:"lunch", ingredients:["eggs"], servings:[2], imageName:"poachedeggs")
         ]
     }
 }

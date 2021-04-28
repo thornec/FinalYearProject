@@ -7,11 +7,11 @@
 
 import SwiftUI
     
-    
+// view for shopping list tab
 struct ShopList: View {
-    @EnvironmentObject var modelData: ModelData     // allows modelData to get its value automatically
-    @State var isAddMode = false
-    @Binding var shoppinglist : [MyShoppingData]
+    @EnvironmentObject var modelData: ModelData     // model data
+    @State var isAddMode = false                    // add mode
+    @Binding var shoppinglist : [MyShoppingData]    // shopping list data
     
     // placeholders for new data
     @State var newIngredient = ""
@@ -21,12 +21,11 @@ struct ShopList: View {
     NavigationView{
         ScrollView {
             VStack{
+                // display each shopping list item
                 ForEach(shoppinglist, id:\.self){ item in
                         ShoppingRow(recipe : item, shoppingData: $shoppinglist)
-                    }
-                
-                Spacer()
-                
+                }
+                Spacer()    // push to top
             }
             .padding()
             .navigationBarTitle("Shopping List")
@@ -54,9 +53,7 @@ struct ShopList: View {
 }
 
 struct ShopList_Previews: PreviewProvider {
-
     static var shoppinglist = ModelData().shoppinglist
-    
     static var previews: some View {
         ShopList(shoppinglist : .constant(shoppinglist)).environmentObject(ModelData())
 

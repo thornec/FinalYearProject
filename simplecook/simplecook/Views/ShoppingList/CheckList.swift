@@ -7,11 +7,11 @@
 
 import SwiftUI
 
+// view for listing items alongside checkboxes in shopping list
 struct CheckList: View {
     var ingredients : [String]
     var recipe : MyShoppingData
     @Binding var shoppingData : [MyShoppingData]
-    
     var body: some View {
         VStack(alignment:.leading) {
             // recipe image
@@ -32,7 +32,6 @@ struct CheckList: View {
                     CheckBox(checked: item.isChecked).padding()
                     }
                 }
-
             RemoveItem(recipes: $shoppingData, recipe: recipe).padding(.leading,280)
         }
         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)

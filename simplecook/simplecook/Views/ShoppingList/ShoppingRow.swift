@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct ShoppingRow: View {
-    
     var recipe : MyShoppingData
     @Binding var shoppingData : [MyShoppingData]
-
     var body: some View {
         VStack(alignment: .leading){
             CheckList(ingredients : recipe.ingredients, recipe: recipe, shoppingData: $shoppingData)
@@ -23,7 +21,6 @@ struct ShoppingRow: View {
 
 struct ShoppingRow_Previews: PreviewProvider {
     static var shoppinglist = ModelData().shoppinglist
-
     static var previews: some View {
         Group{
             ShoppingRow(recipe: MyShoppingData.data[0], shoppingData: .constant(MyShoppingData.data))

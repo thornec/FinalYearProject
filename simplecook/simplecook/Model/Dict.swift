@@ -8,10 +8,10 @@
 import Foundation
 import SwiftUI
 
-
+// dictionary object structure
 struct Dict: Hashable, Codable, Identifiable {
     var id : Int
-    var word : String
-    var definition : String
+    var word : String           // key
+    var definition : String     // value
 }
 
