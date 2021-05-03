@@ -74,7 +74,7 @@ struct RecipeIngredients: View {
                                 Button(action: {
                                     word = ingredient.0 // set dictionary search
                                     isDictionary = true // set full screen as dictionary
-                                }){
+                                }){x
                                     Text(ingredient.0).underline(color:Color/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                                 }
                                 Spacer()
